@@ -13,11 +13,20 @@ public class PlayerMovement : MonoBehaviour
 
     public bool isSprinting;
     public float sprintMultiplier;
+    [HideInInspector]
+    public float stamina;
+    public float staminaDrain;
+    public float staminaRecovery;
 
-	// Use this for initialization
-	void Start ()
+    [HideInInspector]
+    private bool exhausted;
+    public float exhaustedMultiplier;
+
+    // Use this for initialization
+    void Start ()
     {
         controller = GetComponent<CharacterController>();
+        stamina = 1;
 	}
 	
 	// Update is called once per frame
@@ -26,28 +35,30 @@ public class PlayerMovement : MonoBehaviour
         transform.rotation = GameObject.Find("Main Camera").transform.rotation;
         playerJumpAndGravity();
         playerMovement();
+        staminaManagement();
     }
 
 
     void playerMovement()
     {
         float sprintModifier = isSprinting ? sprintMultiplier : 1F;
-        isSprinting = Input.GetButton("Fire3") ? true : false;
+        float exhaustedModifier = exhausted ? exhaustedMultiplier : 1F;
+        isSprinting = Input.GetButton("Fire3") && !exhausted ? true : false;
         if (Input.GetAxisRaw("Horizontal") > 0)
         {
-            controller.Move(transform.right * Time.deltaTime * movementSpeed * sprintModifier);
+            controller.Move(transform.right * Time.deltaTime * movementSpeed * sprintModifier * exhaustedModifier);
         }
         if (Input.GetAxisRaw("Horizontal") < 0)
         {
-            controller.Move(-transform.right * Time.deltaTime * movementSpeed * sprintModifier);
+            controller.Move(-transform.right * Time.deltaTime * movementSpeed * sprintModifier * exhaustedModifier);
         }
         if (Input.GetAxisRaw("Vertical") > 0)
         {
-            controller.Move(transform.forward * Time.deltaTime * movementSpeed * sprintModifier);
+            controller.Move(transform.forward * Time.deltaTime * movementSpeed * sprintModifier * exhaustedModifier);
         }
         if (Input.GetAxisRaw("Vertical") < 0)
         {
-            controller.Move(-transform.forward * Time.deltaTime * movementSpeed * sprintModifier);
+            controller.Move(-transform.forward * Time.deltaTime * movementSpeed * sprintModifier * exhaustedModifier);
         }
     }
 
@@ -61,6 +72,28 @@ public class PlayerMovement : MonoBehaviour
         }
         Vector3 moveVector = new Vector3(0, verticalVelocity, 0);
         controller.Move(moveVector * Time.deltaTime);
+    }
+
+    void staminaManagement()
+    {
+        if(isSprinting)
+        {
+            if (stamina > 0) stamina -= staminaDrain * Time.deltaTime;
+            if (stamina <= 0)
+            {
+                stamina = 0;
+                exhausted = true;
+            }
+        }
+        else if(stamina < 1)
+        {
+            stamina += staminaRecovery * Time.deltaTime;
+            if (stamina >= 1)
+            {
+                stamina = 1;
+                exhausted = false;
+            }
+        }
     }
 
     public bool isGrounded()
