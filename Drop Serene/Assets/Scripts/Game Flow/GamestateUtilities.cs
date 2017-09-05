@@ -26,7 +26,7 @@ public class GamestateUtilities : MonoBehaviour {
         }
 	}
 
-    void Pause()
+    public void Pause()
     {
         if(Time.timeScale == 0F)
         {
@@ -38,12 +38,12 @@ public class GamestateUtilities : MonoBehaviour {
         }        
     }
 
-    void Restart()
+    public void Restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-    void Exit()
+    public void Exit()
     {
         #if UNITY_EDITOR
             UnityEditor.EditorApplication.isPlaying = false;
