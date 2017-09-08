@@ -59,7 +59,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetAxisRaw("Vertical") < 0)
         {
             controller.Move(-transform.forward * Time.deltaTime * movementSpeed * sprintModifier * exhaustedModifier);
-        }
+        }        
     }
 
     void playerJumpAndGravity()
