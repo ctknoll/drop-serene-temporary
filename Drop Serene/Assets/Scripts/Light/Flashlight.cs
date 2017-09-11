@@ -15,11 +15,6 @@ public class Flashlight : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        StartCoroutine(lightBob.DoBobCycle());
-        Debug.Log(lightBob.Offset());
-
-       
-
         if (!lightStatus) {
 			lt.intensity = 0;
 		} else {

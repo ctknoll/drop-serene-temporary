@@ -70,8 +70,19 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
         IEnumerator playFootsteps()
         {
-            stepAudio.PlayOneShot(stepAudio.clip);            
-            yield return new WaitForSeconds(2.5F);
+            if (!playerController.GetComponent<PlayerMovement>().isSprinting)
+            {
+                stepAudio.volume = UnityEngine.Random.Range(.5F, .75F);
+            }                
+            else
+            {
+                stepAudio.volume = UnityEngine.Random.Range(.9F, 1F);
+            }           
+
+            stepAudio.pitch = UnityEngine.Random.Range(.9F, 1F);
+
+            stepAudio.PlayOneShot(stepAudio.clip);
+            yield return new WaitForSeconds(StrideInterval/2F);
             midstep = false;
         }
     }
