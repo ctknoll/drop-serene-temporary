@@ -1,9 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
-{
+{	
     CharacterController controller;
     public float movementSpeed;
     [HideInInspector]
@@ -13,6 +14,10 @@ public class PlayerMovement : MonoBehaviour
 
     public bool isSprinting;
     public float sprintMultiplier;
+	public Slider staminaMeter;
+	public Image staminaMeterFillImage;
+	public Color staminaColor = Color.gray;
+	public Color exhaustedColor = Color.red;
     [HideInInspector]
     public float stamina;
     public float staminaDrain;
@@ -92,8 +97,15 @@ public class PlayerMovement : MonoBehaviour
             {
                 stamina = 1;
                 exhausted = false;
+				staminaMeterFillImage.color = staminaColor;
             }
         }
+
+		staminaMeter.value = stamina;
+		if (exhausted) 
+		{
+			staminaMeterFillImage.color = Color.Lerp (exhaustedColor, staminaColor, staminaMeter.value);
+		} 
     }
 
     public bool isGrounded()
