@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyMovement : MonoBehaviour
 {
-    CharacterController controller;
+	NavMeshAgent agent;
     public float movementSpeed;
     [HideInInspector]
     public float verticalVelocity = 0;
@@ -14,23 +15,19 @@ public class EnemyMovement : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        controller = GetComponent<CharacterController>();
+		agent = GetComponent<NavMeshAgent> ();
     }
 
     // Update is called once per frame
     void Update()
     {
-        playerJumpAndGravity();
+        //playerJumpAndGravity();
         playerMovement();
     }
 
     void playerMovement()
-    {
-        Vector3 movementDirection = GameObject.Find("Player").transform.position - transform.position;        
-        transform.rotation = Quaternion.LookRotation(movementDirection);       
-        //keep y rotation to 0?
-
-        controller.Move(transform.forward * Time.deltaTime * movementSpeed);       
+    {        
+		agent.destination = GameObject.Find ("Player").transform.position;
     }
 
     void playerJumpAndGravity()
@@ -42,7 +39,7 @@ public class EnemyMovement : MonoBehaviour
             verticalVelocity = jumpSpeed;
         }
         Vector3 moveVector = new Vector3(0, verticalVelocity, 0);
-        controller.Move(moveVector * Time.deltaTime);
+		agent.Move(moveVector * Time.deltaTime);
     }
 
     bool isGrounded()
