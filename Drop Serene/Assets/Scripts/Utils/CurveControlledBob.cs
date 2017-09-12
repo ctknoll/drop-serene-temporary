@@ -7,8 +7,8 @@ namespace UnityStandardAssets.Utility
     [Serializable]
     public class CurveControlledBob
     {
-        public float HorizontalBobRange = 0.33f;
-        public float VerticalBobRange = 0.33f;
+        public float HorizontalBobRange = 0.12f;
+        public float VerticalBobRange = 0.12f;
         public AnimationCurve Bobcurve = new AnimationCurve(new Keyframe(0f, 0f), new Keyframe(0.5f, 1f),
                                                             new Keyframe(1f, 0f), new Keyframe(1.5f, -1f),
                                                             new Keyframe(2f, 0f)); // sin curve for head bob
@@ -31,8 +31,8 @@ namespace UnityStandardAssets.Utility
 
         public Vector3 DoHeadBob(float speed)
         {
-            Debug.Log("Horizontal: " + Bobcurve.Evaluate(m_CyclePositionX) * HorizontalBobRange);
-            Debug.Log("Vertical: " + Bobcurve.Evaluate(m_CyclePositionY) * VerticalBobRange);
+            //Debug.Log("Horizontal: " + Bobcurve.Evaluate(m_CyclePositionX) * HorizontalBobRange);
+            //Debug.Log("Vertical: " + Bobcurve.Evaluate(m_CyclePositionY) * VerticalBobRange);
             float xPos = m_OriginalCameraPosition.x + (Bobcurve.Evaluate(m_CyclePositionX)*HorizontalBobRange);
             float yPos = m_OriginalCameraPosition.y + (Bobcurve.Evaluate(m_CyclePositionY)*VerticalBobRange);
 

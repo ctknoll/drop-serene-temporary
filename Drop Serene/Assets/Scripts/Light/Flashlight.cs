@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityStandardAssets.Utility;
 
 public class Flashlight : MonoBehaviour {

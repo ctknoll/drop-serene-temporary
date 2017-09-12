@@ -35,13 +35,15 @@ namespace UnityStandardAssets.Characters.FirstPerson
             if (playerController.GetComponent<CharacterController>().velocity.magnitude > 0 && playerController.GetComponent<PlayerMovement>().isGrounded())
             {
                 Camera.transform.localPosition = motionBob.DoHeadBob(playerController.GetComponent<CharacterController>().velocity.magnitude / (playerController.GetComponent<PlayerMovement>().isSprinting ? playerController.GetComponent<PlayerMovement>().sprintMultiplier : 1f));
-                newCameraPosition = Camera.transform.localPosition;
-                newCameraPosition.y = Camera.transform.localPosition.y - jumpAndLandingBob.Offset();
-                if(!midstep)
+                //Debug.Log(motionBob.Bobcurve.Evaluate(motionBob.m_CyclePositionY));
+                if ((motionBob.Bobcurve.Evaluate(motionBob.m_CyclePositionY) <= -.985 || motionBob.Bobcurve.Evaluate(motionBob.m_CyclePositionY) >= .985) && !midstep)
                 {
                     midstep = true;
                     StartCoroutine("playFootsteps");
+                    Debug.Log("down");
                 }
+                newCameraPosition = Camera.transform.localPosition;
+                newCameraPosition.y = Camera.transform.localPosition.y - jumpAndLandingBob.Offset();
             }
             else
             {
@@ -76,7 +78,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             }                
             else
             {
-                stepAudio.volume = UnityEngine.Random.Range(.9F, 1F);
+                stepAudio.volume = UnityEngine.Random.Range(.9F, 1F);     
             }           
 
             stepAudio.pitch = UnityEngine.Random.Range(.9F, 1F);

@@ -13,16 +13,22 @@ public class AmbientLightDefaults : MonoBehaviour
 
 	void Start () 
 	{
-		if (useDefaultForAll) 
-		{
-			foreach (Light light in lights) 
-			{
-				light.intensity = intensity;
-				light.bounceIntensity = bounce;
-				light.range = range;
-			}
-		}
-	}
+        if(PlayerPrefs.GetFloat("LightLevel") != 0F)
+        {
+            intensity = PlayerPrefs.GetFloat("LightLevel");
+        }        
+    }
 
-	void Update () {}
+	void Update ()
+    {
+        if (useDefaultForAll)
+        {
+            foreach (Light light in lights)
+            {
+                light.intensity = intensity;
+                light.bounceIntensity = bounce;
+                light.range = range;
+            }
+        }
+    }
 }
