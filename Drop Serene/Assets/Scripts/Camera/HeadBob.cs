@@ -20,7 +20,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
         private void Start()
         {
-            playerController = GameObject.Find("Player");
+			playerController = GameObject.Find("Player");
             Camera = GameObject.Find("Main Camera").GetComponent<Camera>();
             m_OriginalCameraPosition = Camera.transform.localPosition;
             motionBob.Setup(Camera, StrideInterval);
@@ -31,17 +31,19 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private void Update()
         {
             Vector3 newCameraPosition;
+
+			AnimationCurve currentCurve = playerController.GetComponent<PlayerMovement>().isSprinting? motionBob.runningCurve : motionBob.walkingCurve;
             //Walking/Sprinting - step at lowest point in DoHeadBob cycle
             if (playerController.GetComponent<CharacterController>().velocity.magnitude > 0 && playerController.GetComponent<PlayerMovement>().isGrounded())
             {
                 Camera.transform.localPosition = motionBob.DoHeadBob(playerController.GetComponent<CharacterController>().velocity.magnitude / (playerController.GetComponent<PlayerMovement>().isSprinting ? playerController.GetComponent<PlayerMovement>().sprintMultiplier : 1f));
                 //Debug.Log(motionBob.Bobcurve.Evaluate(motionBob.m_CyclePositionY));
-              //  if ((motionBob.Bobcurve.Evaluate(motionBob.m_CyclePositionY) <= -.985 || motionBob.Bobcurve.Evaluate(motionBob.m_CyclePositionY) >= .985) && !midstep)
-              //  {
-              //      midstep = true;
-              //      StartCoroutine("playFootsteps");
-              //      Debug.Log("down");
-              //  }
+				if ((currentCurve.Evaluate(motionBob.m_CyclePositionY) - motionBob.m_Time) <= .02F && !midstep)
+                {
+                    midstep = true;
+                    StartCoroutine("playFootsteps");
+                    Debug.Log("down");
+                }
                 newCameraPosition = Camera.transform.localPosition;
                 newCameraPosition.y = Camera.transform.localPosition.y - jumpAndLandingBob.Offset();
             }

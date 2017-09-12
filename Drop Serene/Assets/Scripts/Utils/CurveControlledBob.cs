@@ -26,7 +26,6 @@ namespace UnityStandardAssets.Utility
 			player = GameObject.Find("Player").GetComponent<PlayerMovement>();
 			m_BobBaseInterval = bobBaseInterval;
             m_OriginalCameraPosition = camera.transform.localPosition;
-			m_Time = player.isSprinting ? runningCurve[runningCurve.length - 1].time : walkingCurve[walkingCurve.length - 1].time;
         }
 
 
@@ -34,8 +33,9 @@ namespace UnityStandardAssets.Utility
         {
             //Debug.Log("Horizontal: " + Bobcurve.Evaluate(m_CyclePositionX) * HorizontalBobRange);
             //Debug.Log("Vertical: " + Bobcurve.Evaluate(m_CyclePositionY) * VerticalBobRange);
-			float xPos = m_OriginalCameraPosition.x + ((player.isSprinting ? runningCurve.Evaluate(m_CyclePositionX) : walkingCurve.Evaluate(m_CyclePositionX)) * HorizontalBobRange);
-			float yPos = m_OriginalCameraPosition.y + ((player.isSprinting ? runningCurve.Evaluate(m_CyclePositionY) : walkingCurve.Evaluate(m_CyclePositionX)) * VerticalBobRange);
+			m_Time = player.isSprinting? runningCurve[runningCurve.length-1].time : walkingCurve[walkingCurve.length-1].time;
+			float xPos = m_OriginalCameraPosition.x + ((player.isSprinting? runningCurve.Evaluate(m_CyclePositionX) : walkingCurve.Evaluate(m_CyclePositionX)) * HorizontalBobRange);
+			float yPos = m_OriginalCameraPosition.y + ((player.isSprinting? runningCurve.Evaluate(m_CyclePositionY) : walkingCurve.Evaluate(m_CyclePositionY)) * VerticalBobRange);
 
             m_CyclePositionX += (speed*Time.deltaTime) / m_BobBaseInterval;
             m_CyclePositionY += ((speed*Time.deltaTime) / m_BobBaseInterval) * VerticaltoHorizontalRatio;
