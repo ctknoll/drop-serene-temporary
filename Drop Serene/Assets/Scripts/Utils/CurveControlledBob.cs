@@ -9,10 +9,10 @@ namespace UnityStandardAssets.Utility
     {
         public float HorizontalBobRange = 0.12f;
         public float VerticalBobRange = 0.12f;
-        public AnimationCurve Bobcurve = new AnimationCurve(new Keyframe(0f, 0f), new Keyframe(0.5f, 1f),
-                                                            new Keyframe(1f, 0f), new Keyframe(1.5f, -1f),
-                                                            new Keyframe(2f, 0f)); // sin curve for head bob
+        public AnimationCurve walkingCurve; // sin curve for head bob for walking
+		public AnimationCurve runningCurve; // sin curve for head bob for running
         public float VerticaltoHorizontalRatio = 1f;
+		public PlayerMovement player;
 
         public float m_CyclePositionX = 0;
         public float m_CyclePositionY = 0;
@@ -23,9 +23,10 @@ namespace UnityStandardAssets.Utility
 
         public void Setup(Camera camera, float bobBaseInterval)
         {
-            m_BobBaseInterval = bobBaseInterval;
+			player = GameObject.Find("Player").GetComponent<PlayerMovement>();
+			m_BobBaseInterval = bobBaseInterval;
             m_OriginalCameraPosition = camera.transform.localPosition;
-            m_Time = Bobcurve[Bobcurve.length - 1].time;
+			m_Time = player.isSprinting ? runningCurve[runningCurve.length - 1].time : walkingCurve[walkingCurve.length - 1].time;
         }
 
 
@@ -33,11 +34,11 @@ namespace UnityStandardAssets.Utility
         {
             //Debug.Log("Horizontal: " + Bobcurve.Evaluate(m_CyclePositionX) * HorizontalBobRange);
             //Debug.Log("Vertical: " + Bobcurve.Evaluate(m_CyclePositionY) * VerticalBobRange);
-            float xPos = m_OriginalCameraPosition.x + (Bobcurve.Evaluate(m_CyclePositionX)*HorizontalBobRange);
-            float yPos = m_OriginalCameraPosition.y + (Bobcurve.Evaluate(m_CyclePositionY)*VerticalBobRange);
+			float xPos = m_OriginalCameraPosition.x + ((player.isSprinting ? runningCurve.Evaluate(m_CyclePositionX) : walkingCurve.Evaluate(m_CyclePositionX)) * HorizontalBobRange);
+			float yPos = m_OriginalCameraPosition.y + ((player.isSprinting ? runningCurve.Evaluate(m_CyclePositionY) : walkingCurve.Evaluate(m_CyclePositionX)) * VerticalBobRange);
 
-            m_CyclePositionX += (speed*Time.deltaTime)/m_BobBaseInterval;
-            m_CyclePositionY += ((speed*Time.deltaTime)/m_BobBaseInterval)*VerticaltoHorizontalRatio;
+            m_CyclePositionX += (speed*Time.deltaTime) / m_BobBaseInterval;
+            m_CyclePositionY += ((speed*Time.deltaTime) / m_BobBaseInterval) * VerticaltoHorizontalRatio;
 
             if (m_CyclePositionX > m_Time)
             {

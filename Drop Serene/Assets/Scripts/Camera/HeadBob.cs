@@ -36,12 +36,12 @@ namespace UnityStandardAssets.Characters.FirstPerson
             {
                 Camera.transform.localPosition = motionBob.DoHeadBob(playerController.GetComponent<CharacterController>().velocity.magnitude / (playerController.GetComponent<PlayerMovement>().isSprinting ? playerController.GetComponent<PlayerMovement>().sprintMultiplier : 1f));
                 //Debug.Log(motionBob.Bobcurve.Evaluate(motionBob.m_CyclePositionY));
-                if ((motionBob.Bobcurve.Evaluate(motionBob.m_CyclePositionY) <= -.985 || motionBob.Bobcurve.Evaluate(motionBob.m_CyclePositionY) >= .985) && !midstep)
-                {
-                    midstep = true;
-                    StartCoroutine("playFootsteps");
-                    Debug.Log("down");
-                }
+              //  if ((motionBob.Bobcurve.Evaluate(motionBob.m_CyclePositionY) <= -.985 || motionBob.Bobcurve.Evaluate(motionBob.m_CyclePositionY) >= .985) && !midstep)
+              //  {
+              //      midstep = true;
+              //      StartCoroutine("playFootsteps");
+              //      Debug.Log("down");
+              //  }
                 newCameraPosition = Camera.transform.localPosition;
                 newCameraPosition.y = Camera.transform.localPosition.y - jumpAndLandingBob.Offset();
             }
