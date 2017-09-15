@@ -6,18 +6,19 @@ using UnityEngine.AI;
 public class EnemyStateController : MonoBehaviour 
 {
 	public NavMeshAgent agent;
-	StateMachineBehaviour currentState;
+	State currentState;
 
 	// Use this for initialization
 	void Start () 
 	{
-		currentState = new RoamState ().OnStateEnter (this);		
+        currentState = new RoamState();
+        currentState.OnStateEnter (agent);		
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
-		currentState.OnStateUpdate (this);
+		currentState.OnStateUpdate (agent);
 		evaluateTransition ();
 	}
 

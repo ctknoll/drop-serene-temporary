@@ -23,7 +23,7 @@ public class RoamState : State
 
 	GameObject chooseNode()
 	{
-		return;
+		return new GameObject();
 	}
 
 	override public void OnStateExit(NavMeshAgent agent)
