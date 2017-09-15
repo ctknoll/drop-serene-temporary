@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public abstract class State : ScriptableObject 
-{	
-	abstract public void OnStateEnter (NavMeshAgent agent);
-	abstract public void OnStateUpdate(NavMeshAgent agent);
-	abstract public void OnStateExit(NavMeshAgent agent);
+public abstract class State : ScriptableObject
+{
+    protected EnemyStateController controller;
+    abstract public void OnStateEnter();
+    abstract public void OnStateUpdate();
+    abstract public void OnStateExit();
+    abstract public void EvaluateTransition();
 }
