@@ -3,23 +3,28 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+[RequireComponent(typeof(NavMeshAgent))]
+
 public class EnemyStateController : MonoBehaviour 
 {
 	public NavMeshAgent agent;
+    public Transform[] roamGoalNodes;
 
-	State currentState;
+    State currentState;
     State expectedState;
 
-    public RoamState roamState;
-    public InvestigateState investigateState;
-    public ChaseState chaseState;
+    RoamState roamState;
+    InvestigateState investigateState;
+    ChaseState chaseState;    
 
-	// Use this for initialization
-	void Start () 
+    // Use this for initialization
+    void Start () 
 	{
-        roamState = new RoamState(this);
-        investigateState = new InvestigateState(this);
-        chaseState = new ChaseState(this);
+        agent = GetComponent<NavMeshAgent>();
+
+        roamState = (RoamState)State.CreateState("RoamState", this);
+        investigateState = (InvestigateState)State.CreateState("InvestigateState", this);
+        chaseState = (ChaseState)State.CreateState("ChaseState", this);
 
         currentState = roamState;
         expectedState = roamState;

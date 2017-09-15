@@ -3,11 +3,6 @@ using UnityEngine.AI;
 
 public class ChaseState : State
 {
-    public ChaseState(EnemyStateController controller)
-    {
-        this.controller = controller;
-    }
-
     override public void OnStateEnter()
     {
         Debug.Log("Entered chase state");        
