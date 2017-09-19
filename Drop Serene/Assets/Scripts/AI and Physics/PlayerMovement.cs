@@ -117,4 +117,9 @@ public class PlayerMovement : MonoBehaviour
         }
         return false;
     }
+
+    public void noiseEvent()
+    {
+        //wooh spook?!
+    }
 }

@@ -1,16 +1,19 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.AI;
+﻿using UnityEngine;
+using System;
 
 public class RoamState : State 
 {    
-    public Transform currentGoal;
+    public Transform currentGoal;    
 
     override public void OnStateEnter()
 	{
-		Debug.Log ("Entered roam state");        
+		Debug.Log ("Entered roam state");
+        
+        if(controller.agent.isOnNavMesh)
+        {
+            Debug.Log(controller.agent.transform.position);
+        }
+              
         float shortestPath = 1000F;
 
         foreach(Transform node in controller.roamGoalNodes)
@@ -28,17 +31,19 @@ public class RoamState : State
 	}
 
 	override public void OnStateUpdate()
-	{		
-		//if at node, choose new node
-        if(Vector3.Magnitude(controller.agent.transform.position - currentGoal.position) < 1F)
+	{
+        //if at node, choose new node
+        if (Vector3.Magnitude(controller.agent.transform.position - currentGoal.position) < 1F)
         {
             chooseNode();
-        }		
+        }	
 	}
 
 	void chooseNode()
 	{
-        controller.agent.destination = controller.roamGoalNodes[controller.roamGoalNodes.Length - 1].position;
+        int index = (Array.IndexOf(controller.roamGoalNodes, currentGoal) + 1) % controller.roamGoalNodes.Length;
+        currentGoal = controller.roamGoalNodes[index];
+        controller.agent.destination = currentGoal.position;
         Debug.Log("Chose new goal");
 	}
 
@@ -49,7 +54,8 @@ public class RoamState : State
 
     public override void EvaluateTransition()
     {
-        
+        if (!controller.alertLocation.Equals(controller.vec3Null)) controller.currentState = controller.investigateState;
+        //enter chase if in line of sight and in light, EVER
     }
 
 }

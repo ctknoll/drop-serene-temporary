@@ -24,9 +24,21 @@ public class SetLightOptions : MonoBehaviour {
         lightScript.intensity = lightSlider.value;
     }
 
-    public void StartGame()
+    /*public void StartGame()
     {
         PlayerPrefs.SetFloat("LightLevel", lightScript.intensity);
         SceneManager.LoadScene("Level 1");
+    }*/
+
+    public void StartLevelOne()
+    {
+        PlayerPrefs.SetFloat("LightLevel", lightScript.intensity);
+        SceneManager.LoadScene("Level 1");
+    }
+
+    public void StartLevelTwo()
+    {
+        PlayerPrefs.SetFloat("LightLevel", lightScript.intensity);
+        SceneManager.LoadScene("Level 2");
     }
 }

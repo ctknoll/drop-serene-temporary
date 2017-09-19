@@ -16,6 +16,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private bool m_PreviouslyGrounded;
         private bool midstep = false;
         private Vector3 m_OriginalCameraPosition;
+        public Vector2 footstepVolume;
 
 
         private void Start()
@@ -43,6 +44,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
                     midstep = true;
                     StartCoroutine("playFootsteps");
                     Debug.Log("down");
+                    float sprintMod = playerController.GetComponent<PlayerMovement>().isSprinting ? playerController.GetComponent<PlayerMovement>().sprintMultiplier : 1;
+                    ScriptableObject.CreateInstance<Noise>().makeNoise(UnityEngine.Random.Range(footstepVolume.x, footstepVolume.y) * sprintMod, transform.position);
                 }
                 newCameraPosition = Camera.transform.localPosition;
                 newCameraPosition.y = Camera.transform.localPosition.y - jumpAndLandingBob.Offset();

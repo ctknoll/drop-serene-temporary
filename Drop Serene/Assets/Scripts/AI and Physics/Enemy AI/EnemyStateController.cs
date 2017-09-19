@@ -4,23 +4,28 @@ using UnityEngine;
 using UnityEngine.AI;
 
 [RequireComponent(typeof(NavMeshAgent))]
-
 public class EnemyStateController : MonoBehaviour 
 {
-	public NavMeshAgent agent;
+	
     public Transform[] roamGoalNodes;
 
-    State currentState;
+    public State currentState;
     State expectedState;
 
-    RoamState roamState;
-    InvestigateState investigateState;
-    ChaseState chaseState;    
+    [HideInInspector]
+    public NavMeshAgent agent;
+    public RoamState roamState;
+    public InvestigateState investigateState;
+    public ChaseState chaseState;
+
+    public readonly Vector3 vec3Null = new Vector3(Mathf.Infinity, Mathf.Infinity, Mathf.Infinity);
+    public Vector3 alertLocation;
 
     // Use this for initialization
     void Start () 
 	{
         agent = GetComponent<NavMeshAgent>();
+        alertLocation = vec3Null;
 
         roamState = (RoamState)State.CreateState("RoamState", this);
         investigateState = (InvestigateState)State.CreateState("InvestigateState", this);
@@ -28,19 +33,22 @@ public class EnemyStateController : MonoBehaviour
 
         currentState = roamState;
         expectedState = roamState;
-        currentState.OnStateEnter ();
+        currentState.OnStateEnter();
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
-		currentState.OnStateUpdate ();
-
+		currentState.OnStateUpdate();
+        currentState.EvaluateTransition();
         if(!expectedState.Equals(currentState))
         {
             expectedState.OnStateExit();
             currentState.OnStateEnter();
             expectedState = currentState;
+            alertLocation = vec3Null;
         }
 	}
+
+    public void heardNoise(Vector3 location) {alertLocation = location;}
 }

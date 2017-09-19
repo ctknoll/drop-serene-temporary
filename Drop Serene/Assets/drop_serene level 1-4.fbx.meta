@@ -1,0 +1,194 @@
+fileFormatVersion: 2
+guid: 1d079aa8cc2ed964e9f93cb715901ac6
+timeCreated: 1505442344
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 21
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: entrace_walls
+    100004: entrance
+    100006: entrance_ceiling
+    100008: entrance_floor
+    100010: entrance_walkway_ceiling
+    100012: entrance_walkway_floor
+    100014: entrance_walkway_walls
+    100016: exit
+    100018: exit_ceiling
+    100020: exit_floor
+    100022: exit_walls
+    100024: f1
+    100026: f1_floor
+    100028: f1_pillars
+    100030: f1_walls
+    100032: f2
+    100034: f2_floor
+    100036: f2_pillars
+    100038: f2_walls
+    100040: stairs
+    100042: stairs_1
+    100044: stairs_2
+    100046: stairs_ceiling
+    100048: stairs_landing
+    100050: stairs_walls
+    400000: //RootNode
+    400002: entrace_walls
+    400004: entrance
+    400006: entrance_ceiling
+    400008: entrance_floor
+    400010: entrance_walkway_ceiling
+    400012: entrance_walkway_floor
+    400014: entrance_walkway_walls
+    400016: exit
+    400018: exit_ceiling
+    400020: exit_floor
+    400022: exit_walls
+    400024: f1
+    400026: f1_floor
+    400028: f1_pillars
+    400030: f1_walls
+    400032: f2
+    400034: f2_floor
+    400036: f2_pillars
+    400038: f2_walls
+    400040: stairs
+    400042: stairs_1
+    400044: stairs_2
+    400046: stairs_ceiling
+    400048: stairs_landing
+    400050: stairs_walls
+    2300000: entrace_walls
+    2300002: entrance_ceiling
+    2300004: entrance_floor
+    2300006: entrance_walkway_ceiling
+    2300008: entrance_walkway_floor
+    2300010: entrance_walkway_walls
+    2300012: exit_ceiling
+    2300014: exit_floor
+    2300016: exit_walls
+    2300018: f1_floor
+    2300020: f1_pillars
+    2300022: f1_walls
+    2300024: f2_floor
+    2300026: f2_pillars
+    2300028: f2_walls
+    2300030: stairs_1
+    2300032: stairs_2
+    2300034: stairs_ceiling
+    2300036: stairs_landing
+    2300038: stairs_walls
+    3300000: entrace_walls
+    3300002: entrance_ceiling
+    3300004: entrance_floor
+    3300006: entrance_walkway_ceiling
+    3300008: entrance_walkway_floor
+    3300010: entrance_walkway_walls
+    3300012: exit_ceiling
+    3300014: exit_floor
+    3300016: exit_walls
+    3300018: f1_floor
+    3300020: f1_pillars
+    3300022: f1_walls
+    3300024: f2_floor
+    3300026: f2_pillars
+    3300028: f2_walls
+    3300030: stairs_1
+    3300032: stairs_2
+    3300034: stairs_ceiling
+    3300036: stairs_landing
+    3300038: stairs_walls
+    4300000: entrance_walkway_ceiling
+    4300002: entrance_ceiling
+    4300004: entrace_walls
+    4300006: entrance_floor
+    4300008: entrance_walkway_floor
+    4300010: entrance_walkway_walls
+    4300012: f1_pillars
+    4300014: f1_walls
+    4300016: f1_floor
+    4300018: f2_pillars
+    4300020: f2_walls
+    4300022: f2_floor
+    4300024: stairs_ceiling
+    4300026: stairs_walls
+    4300028: stairs_2
+    4300030: stairs_1
+    4300032: stairs_landing
+    4300034: exit_ceiling
+    4300036: exit_walls
+    4300038: exit_floor
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

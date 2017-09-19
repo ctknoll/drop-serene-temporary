@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class Noise : ScriptableObject
 {
-	public Noise(float loudness, Vector3 location)
+    public AnimationCurve noiseDropoff = new AnimationCurve(new Keyframe(0, 1), new Keyframe(.25f, .5f),
+                                                            new Keyframe(.5f, .15f), new Keyframe(.75f, .05f),
+                                                            new Keyframe(1, .01f));
+
+    public void makeNoise(float loudness, Vector3 location)
     {
         Collider[]  colliders = Physics.OverlapSphere(location, loudness);
         foreach(Collider collider in colliders)
@@ -12,8 +16,9 @@ public class Noise : ScriptableObject
             NoiseListener noiseListener;
             if (noiseListener = collider.gameObject.GetComponent<NoiseListener>())
             {
-                //determine loudness somehow
-                //noiseListener.onHearingNoise(location, loudness);
+                float distanceModifier = (location - collider.transform.position).magnitude / loudness;
+                float volume = loudness * noiseDropoff.Evaluate(distanceModifier);
+                noiseListener.onHearingNoise(volume, location);
             }
         }
     }
