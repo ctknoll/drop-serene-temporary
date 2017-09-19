@@ -2,7 +2,7 @@
 
 public class InvestigateState : State
 {
-    Vector3 location;
+	Vector3 location;
 
     override public void OnStateEnter()
     {
@@ -13,7 +13,7 @@ public class InvestigateState : State
     override public void OnStateUpdate()
     {
         Debug.Log("Update investigate state");
-        controller.agent.Move(location);
+		controller.agent.destination = location;
         if(!controller.alertLocation.Equals(location) && !controller.alertLocation.Equals(controller.vec3Null))
         {
             //HE MUST DECIDE WHO TO FOLLOW!
@@ -26,7 +26,8 @@ public class InvestigateState : State
 
     override public void OnStateExit()
     {
-        Debug.Log("Exit investigate state");
+		location = controller.vec3Null;
+		Debug.Log("Exit investigate state");
     }
 
     public override void EvaluateTransition()

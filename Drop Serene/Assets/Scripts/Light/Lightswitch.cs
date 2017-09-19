@@ -4,7 +4,7 @@
 
 public class Lightswitch : MonoBehaviour {  
     
-    public Light light;    
+    public Light lightSwitchLight;    
     private bool inRange = false;
 
     // Use this for initialization
@@ -16,7 +16,7 @@ public class Lightswitch : MonoBehaviour {
 	void Update () {
 		if(Input.GetButtonDown("Fire2") && inRange)
         {
-            light.enabled = !light.enabled;
+            lightSwitchLight.enabled = !lightSwitchLight.enabled;
         }        
 	}
 
