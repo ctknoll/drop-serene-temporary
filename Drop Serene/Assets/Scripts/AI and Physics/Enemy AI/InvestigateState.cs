@@ -33,10 +33,8 @@ public class InvestigateState : State
     public override void EvaluateTransition()
     {
         //If he's at the location of the last noise...
-        if ((location - controller.agent.transform.position).magnitude < 1)
-        {
-            controller.currentState = controller.roamState;
-        }
+        if ((location - controller.agent.transform.position).magnitude < 1) controller.currentState = controller.roamState;
+		if (controller.foundPlayer != null) controller.currentState = controller.chaseState;
     }
 
 }

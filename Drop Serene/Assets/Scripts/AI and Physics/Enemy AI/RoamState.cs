@@ -55,6 +55,7 @@ public class RoamState : State
     public override void EvaluateTransition()
     {
         if (!controller.alertLocation.Equals(controller.vec3Null)) controller.currentState = controller.investigateState;
+		if (controller.foundPlayer != null) controller.currentState = controller.chaseState;
         //enter chase if in line of sight and in light, EVER
     }
 

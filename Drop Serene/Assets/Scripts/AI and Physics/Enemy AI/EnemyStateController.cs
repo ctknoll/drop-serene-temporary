@@ -20,6 +20,7 @@ public class EnemyStateController : MonoBehaviour
 
     public readonly Vector3 vec3Null = new Vector3(Mathf.Infinity, Mathf.Infinity, Mathf.Infinity);
     public Vector3 alertLocation;
+	public GameObject foundPlayer;
 
     // Use this for initialization
     void Start () 
@@ -39,6 +40,7 @@ public class EnemyStateController : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
+		foundPlayer = checkForLitPlayer();
 		currentState.OnStateUpdate();
         currentState.EvaluateTransition();
         if(!expectedState.Equals(currentState))
@@ -47,7 +49,17 @@ public class EnemyStateController : MonoBehaviour
             currentState.OnStateEnter();
             expectedState = currentState;
             alertLocation = vec3Null;
+			foundPlayer = null;
         }
+	}
+
+	public GameObject checkForLitPlayer()
+	{
+		bool flashlightLit = GameObject.Find("Spotlight").GetComponent<Flashlight> ().lightStatus;
+		GameObject player = GameObject.Find("Player");
+		if (!Physics.Linecast (agent.transform.position, player.transform.position, 510) && flashlightLit)
+			return player;
+		return null;
 	}
 
     public void heardNoise(Vector3 location) {alertLocation = location;}
