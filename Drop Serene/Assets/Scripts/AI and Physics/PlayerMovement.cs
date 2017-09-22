@@ -37,7 +37,8 @@ public class PlayerMovement : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        transform.rotation = GameObject.Find("Main Camera").transform.rotation;
+        Quaternion cameraRotation = GameObject.Find("Main Camera").transform.rotation;
+        transform.rotation = Quaternion.Euler(new Vector3(cameraRotation.x, 180, cameraRotation.z));
         playerJumpAndGravity();
         playerMovement();
         staminaManagement();
@@ -116,10 +117,5 @@ public class PlayerMovement : MonoBehaviour
             if (hit.distance - (GetComponent<CapsuleCollider>().height / 2) < .1F) return true;
         }
         return false;
-    }
-
-    public void noiseEvent()
-    {
-        //wooh spook?!
     }
 }

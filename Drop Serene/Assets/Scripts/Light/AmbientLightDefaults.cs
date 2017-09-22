@@ -9,6 +9,7 @@ public class AmbientLightDefaults : MonoBehaviour
 	public float intensity;
 	public float bounce;
 	public float range;
+    public Color color;
 	public bool useDefaultForAll;
 
 	void Start () 
@@ -28,6 +29,7 @@ public class AmbientLightDefaults : MonoBehaviour
                 light.intensity = intensity;
                 light.bounceIntensity = bounce;
                 light.range = range;
+                light.color = color;
             }
         }
     }
