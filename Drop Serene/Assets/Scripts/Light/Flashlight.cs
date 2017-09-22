@@ -2,16 +2,19 @@
 using UnityEngine;
 using UnityStandardAssets.Utility;
 
-public class Flashlight : MonoBehaviour {
+public class Flashlight : MonoBehaviour
+{
 	public GameObject lightObject;
 	public bool lightStatus;
 	public Light lt;
     public LerpControlledBob lightBob = new LerpControlledBob();
+    public Collider lightCollider;
 
 	// Use this for initialization
 	void Start () {
 		lightStatus = false;
-		lt = GetComponent<Light>();        
+		lt = GetComponent<Light>();
+        lightCollider = GetComponent<Collider>();
 	}
 	
 	// Update is called once per frame
@@ -25,4 +28,9 @@ public class Flashlight : MonoBehaviour {
 			lightStatus = !lightStatus;
 		}
 	}
+
+    void OnTriggerEnter(Collider other)
+    {
+        other.GetComponent<LightableObject>().isLit = true;
+    }
 }
