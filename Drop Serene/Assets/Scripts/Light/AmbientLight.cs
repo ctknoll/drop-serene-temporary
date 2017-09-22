@@ -15,6 +15,7 @@ public class AmbientLight : MonoBehaviour {
 		{
 			light.intensity = defaults.intensity;
 			light.bounceIntensity = defaults.bounce;
+            light.color = defaults.color;
 		}
 	}
 	
