@@ -21,6 +21,7 @@ public class CameraController : MonoBehaviour
         x = angles.y;
         y = angles.x;
         player = GameObject.Find("Player");
+        Cursor.lockState = CursorLockMode.Locked;
     }
 	
 	// Update is called once per frame
@@ -37,6 +38,19 @@ public class CameraController : MonoBehaviour
         Quaternion rotation = Quaternion.Euler(y, x, 0);
 
         transform.rotation = rotation;
+
+        if (Input.GetKeyDown(KeyCode.F1))
+        {
+            Cursor.visible = !Cursor.visible;
+            if (Cursor.visible)
+            {
+                Cursor.lockState = CursorLockMode.None;
+            }
+            else
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+            }
+        }
     }
 
 
