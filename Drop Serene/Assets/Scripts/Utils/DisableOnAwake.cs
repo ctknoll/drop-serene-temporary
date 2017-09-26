@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DisableOnAwake : MonoBehaviour {
+public class DisableOnAwake : MonoBehaviour
+{
 
 	// Use this for initialization
 	void Start () 
@@ -12,7 +13,7 @@ public class DisableOnAwake : MonoBehaviour {
 
 	void Awake ()
 	{
-		gameObject.SetActive (false);
+		gameObject.SetActive(false);
 	}
 	
 	// Update is called once per frame

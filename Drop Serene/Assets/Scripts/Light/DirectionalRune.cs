@@ -1,37 +1,65 @@
-﻿
-using UnityEngine;
+﻿using UnityEngine;
+
+[RequireComponent(typeof(Collider))]
+[RequireComponent(typeof(Rigidbody))]
 
 public class DirectionalRune : LightableObject
 {
-    public float defaultIntensity = .3F;
-    public float lightOnIntensity = .1F;    
+    public float defaultIntensity = .1F;
+    public float lightOnIntensity = .3F;
+    public Color deactivatedColor;
+    public Color runeLit;
+    public Color runeDark;
 
     // Use this for initialization
     public override void Start ()
     {
         base.Start();
-        isActive = true;
         intensity = defaultIntensity;
+        emissionColor = deactivatedColor;
+        base.Update();
+        GetComponent<Rigidbody>().isKinematic = true;
     }
 	
 	// Update is called once per frame
 	public override void Update ()
     {
-		if(!isLit)
+        if(isActive)
         {
-            //emissionColor = Color.green; //* Mathf.LinearToGammaSpace(defaultIntensity);
-            intensity = defaultIntensity;
-        }
-        else
-        {
-            //emissionColor = Color.blue;// * Mathf.LinearToGammaSpace(lightOnIntensity);
-            intensity = lightOnIntensity;
-        }
-        
-        base.Update();
+            if (!isLit)
+            {
+                emissionColor = runeDark; 
+                intensity = defaultIntensity;
+            }
+            else
+            {
+                emissionColor = runeLit;
+                intensity = lightOnIntensity;
+            }
+
+            base.Update();
+        }		
 	}
 
-    public override void OnActivate(){}
+    public override void OnActivate()
+    {
+        isActive = true;
+    }
 
-    public override void OnDeactivate(){}
+    public override void OnDeactivate() {}
+
+    public override void LightOn()
+    {
+        isLit = true;
+
+        if(!isActive)
+        {            
+            OnActivate();
+        }
+    }
+
+    public override void LightOff()
+    {
+        isLit = false;
+    }
 }

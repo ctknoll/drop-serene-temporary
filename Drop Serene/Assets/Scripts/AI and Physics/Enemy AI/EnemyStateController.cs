@@ -40,7 +40,6 @@ public class EnemyStateController : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-		foundPlayer = checkForLitPlayer();
 		currentState.OnStateUpdate();
         currentState.EvaluateTransition();
         if(!expectedState.Equals(currentState))
@@ -51,15 +50,6 @@ public class EnemyStateController : MonoBehaviour
             alertLocation = vec3Null;
 			foundPlayer = null;
         }
-	}
-
-	public GameObject checkForLitPlayer()
-	{
-		bool flashlightLit = GameObject.Find("Spotlight").GetComponent<Flashlight> ().lightStatus;
-		GameObject player = GameObject.Find("Player");
-		if (!Physics.Linecast (agent.transform.position, player.transform.position, 510) && flashlightLit)
-			return player;
-		return null;
 	}
 
     public void heardNoise(Vector3 location) {alertLocation = location;}

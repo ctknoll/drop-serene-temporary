@@ -2,21 +2,24 @@
 
 public abstract class LightableObject : MonoBehaviour
 {
-    Renderer rend;
-    public Material runeMaterial;
-    public Color emissionColor;
+    Renderer rend;    
     public bool isLit = false;
     public bool isActive = false;
+
+    [HideInInspector]
+    public Material runeMaterial;
+    public Color emissionColor;
     public float intensity = 0F;
     
     public abstract void OnActivate();
     public abstract void OnDeactivate();
+    public abstract void LightOn();
+    public abstract void LightOff();
 
     public virtual void Start()
     {
         rend = GetComponent<Renderer>();
         runeMaterial = rend.material;
-        //emissionColor = Color.green;
     }
 
     public virtual void Update()

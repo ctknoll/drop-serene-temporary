@@ -3,15 +3,19 @@ using System;
 
 public class RoamState : State 
 {    
-    public Transform currentGoal;    
+    public Transform currentGoal;
+    Transform player;
+    Flashlight light;
 
     override public void OnStateEnter()
 	{
-		Debug.Log ("Entered roam state");
-        
-        if(controller.agent.isOnNavMesh)
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        light = player.gameObject.GetComponentInChildren<Flashlight>();
+        //		Debug.Log ("Entered roam state");
+
+        if (controller.agent.isOnNavMesh)
         {
-            Debug.Log(controller.agent.transform.position);
+     //       Debug.Log(controller.agent.transform.position);
         }
               
         float shortestPath = 1000F;
@@ -26,7 +30,7 @@ public class RoamState : State
             }            
         }
 
-        Debug.Log("Chose goal node at " + currentGoal.position);
+   //     Debug.Log("Chose goal node at " + currentGoal.position);
         controller.agent.destination = currentGoal.position;
 	}
 
@@ -57,6 +61,7 @@ public class RoamState : State
         if (!controller.alertLocation.Equals(controller.vec3Null)) controller.currentState = controller.investigateState;
 		if (controller.foundPlayer != null) controller.currentState = controller.chaseState;
         //enter chase if in line of sight and in light, EVER
+        if (LightingUtils.inLineOfSight(controller.gameObject, player.gameObject) && light.lightStatus) controller.currentState = controller.chaseState;
     }
 
 }

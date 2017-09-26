@@ -24,6 +24,7 @@ public class AmbientLightDefaults : MonoBehaviour
     {
         if (useDefaultForAll)
         {
+            lights.RemoveAll(light => light == null);
             foreach (Light light in lights)
             {
                 light.intensity = intensity;
