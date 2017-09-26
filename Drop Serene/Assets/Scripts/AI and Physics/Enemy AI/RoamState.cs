@@ -11,7 +11,7 @@ public class RoamState : State
 	{
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         light = player.gameObject.GetComponentInChildren<Flashlight>();
-        //		Debug.Log ("Entered roam state");
+        Debug.Log ("Entered roam state");
 
         if (controller.agent.isOnNavMesh)
         {
@@ -30,7 +30,7 @@ public class RoamState : State
             }            
         }
 
-   //     Debug.Log("Chose goal node at " + currentGoal.position);
+        Debug.Log("Chose goal node at " + currentGoal.position);
         controller.agent.destination = currentGoal.position;
 	}
 
@@ -48,7 +48,7 @@ public class RoamState : State
         int index = (Array.IndexOf(controller.roamGoalNodes, currentGoal) + 1) % controller.roamGoalNodes.Length;
         currentGoal = controller.roamGoalNodes[index];
         controller.agent.destination = currentGoal.position;
-        Debug.Log("Chose new goal");
+		Debug.Log("Chose new goal " + currentGoal.name);
 	}
 
 	override public void OnStateExit()
