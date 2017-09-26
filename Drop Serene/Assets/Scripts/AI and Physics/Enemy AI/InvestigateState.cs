@@ -11,8 +11,7 @@ public class InvestigateState : State
     }
 
     override public void OnStateUpdate()
-    {
-        Debug.Log("Update investigate state");
+    {        
 		controller.agent.destination = location;
         if(!controller.alertLocation.Equals(location) && !controller.alertLocation.Equals(controller.vec3Null))
         {

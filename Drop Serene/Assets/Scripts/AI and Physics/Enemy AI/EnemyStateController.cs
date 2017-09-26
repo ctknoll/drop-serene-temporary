@@ -22,6 +22,9 @@ public class EnemyStateController : MonoBehaviour
     public Vector3 alertLocation;
 	public GameObject foundPlayer;
 
+	//REMOVE AFTER TESTING
+	public GameObject player;
+
     // Use this for initialization
     void Start () 
 	{
@@ -35,6 +38,8 @@ public class EnemyStateController : MonoBehaviour
         currentState = roamState;
         expectedState = roamState;
         currentState.OnStateEnter();
+
+		player = GameObject.Find("Player");
 	}
 	
 	// Update is called once per frame
@@ -50,6 +55,8 @@ public class EnemyStateController : MonoBehaviour
             alertLocation = vec3Null;
 			foundPlayer = null;
         }
+
+		Debug.Log ("Line of sight " + LightingUtils.inLineOfSight (gameObject, player.gameObject));
 	}
 
     public void heardNoise(Vector3 location) {alertLocation = location;}

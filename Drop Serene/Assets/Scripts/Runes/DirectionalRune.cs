@@ -15,8 +15,8 @@ public class DirectionalRune : LightableObject
     public override void Start ()
     {
         base.Start();
-        intensity = defaultIntensity;
-        emissionColor = deactivatedColor;
+		currentIntensity = defaultIntensity;
+		currentColor = deactivatedColor;
         base.Update();
         GetComponent<Rigidbody>().isKinematic = true;
     }
@@ -28,13 +28,13 @@ public class DirectionalRune : LightableObject
         {
             if (!isLit)
             {
-                emissionColor = runeDark; 
-                intensity = defaultIntensity;
+				currentColor = runeDark; 
+				currentIntensity = defaultIntensity;
             }
             else
             {
-                emissionColor = runeLit;
-                intensity = lightOnIntensity;
+				currentColor = runeLit;
+				currentIntensity = lightOnIntensity;
             }
 
             base.Update();

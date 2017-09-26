@@ -43,7 +43,6 @@ public class PlayerMovement : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-     //   Debug.Log(LightingUtils.inLineOfSight(gameObject, GameObject.Find("Monster")));
         transform.rotation = Quaternion.Euler(cameraZ, camera.transform.rotation.eulerAngles.y, camera.transform.rotation.eulerAngles.z);
         playerJumpAndGravity();
         playerMovement();

@@ -8,6 +8,7 @@ public class DoorRune : LightableObject
     public GameObject door;
     public float defaultIntensity = .1F;
     public float lightOnIntensity = .3F;
+	public Color deactivatedColor;
     public Color runeLit;
     public Color runeDark;
 
@@ -15,8 +16,8 @@ public class DoorRune : LightableObject
     public override void Start()
     {
         base.Start();
-        intensity = defaultIntensity;
-        emissionColor = runeDark;
+		currentIntensity = defaultIntensity;
+		currentColor = deactivatedColor;
         base.Update();
         GetComponent<Rigidbody>().isKinematic = true;
     }
@@ -24,13 +25,13 @@ public class DoorRune : LightableObject
     // Update is called once per frame
     public override void Update()
     {
-        if (door.activeSelf && isActive)// && !LightingUtils.inLineOfSight(door, gameObject))
+		if (door.activeSelf && isActive && !LightingUtils.inLineOfSight(gameObject, door))
         {
             door.SetActive(false);
             Debug.Log("Disabled door");
         }
 
-        if(emissionColor != runeDark)
+		if(currentColor != runeDark)
             base.Update();
     }
 
@@ -44,8 +45,8 @@ public class DoorRune : LightableObject
     public override void LightOn()
     {
         isLit = true;
-        emissionColor = runeLit;
-        intensity = lightOnIntensity;
+		currentColor = runeLit;
+		currentIntensity = lightOnIntensity;
 
         if (!isActive)
         {

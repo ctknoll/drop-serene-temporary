@@ -8,8 +8,8 @@ public abstract class LightableObject : MonoBehaviour
 
     [HideInInspector]
     public Material runeMaterial;
-    public Color emissionColor;
-    public float intensity = 0F;
+	public Color currentColor;
+    public float currentIntensity = 0F;
     
     public abstract void OnActivate();
     public abstract void OnDeactivate();
@@ -24,6 +24,6 @@ public abstract class LightableObject : MonoBehaviour
 
     public virtual void Update()
     {
-        rend.material.SetColor("_EmissionColor", emissionColor * intensity);
+		rend.material.SetColor("_EmissionColor", currentColor * currentIntensity);
     }
 }

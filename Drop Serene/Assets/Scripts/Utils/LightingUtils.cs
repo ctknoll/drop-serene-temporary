@@ -4,22 +4,13 @@ using UnityEngine;
 
 public class LightingUtils
 {
-
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update ()
-    {
-		
-	}
-
     public static bool inLineOfSight (GameObject obj, GameObject target)
-    {
-        if (Physics.Linecast(obj.transform.position, target.transform.position, 510))
-            return false;
-        return true;
+    {		
+		RaycastHit hit;
+		if (Physics.Linecast (obj.transform.position, target.transform.position, out hit) && hit.collider.name.Equals(target.name)) 
+		{				
+			return true;	
+		}
+		return false;
     }
 }
