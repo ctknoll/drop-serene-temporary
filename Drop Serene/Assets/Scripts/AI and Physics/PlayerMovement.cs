@@ -37,8 +37,9 @@ public class PlayerMovement : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        Quaternion cameraRotation = GameObject.Find("Main Camera").transform.rotation;
-        transform.rotation = Quaternion.Euler(new Vector3(cameraRotation.x, 180, cameraRotation.z));
+        GameObject camera = GameObject.Find("Main Camera");
+        transform.LookAt(Quaternion.Euler(-transform.rotation.x, 0, 0) * (transform.position + camera.transform.forward));
+        // transform.rotation = cameraRotation;
         playerJumpAndGravity();
         playerMovement();
         staminaManagement();
