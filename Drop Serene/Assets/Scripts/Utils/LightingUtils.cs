@@ -18,8 +18,8 @@ public class LightingUtils
 
     public static bool inLineOfSight (GameObject obj, GameObject target)
     {
-        if (Physics.Linecast(obj.transform.position, target.transform.position, 510))
-            return false;
+		if (Physics.Linecast(obj.transform.position, target.transform.position, LayerMask.GetMask("Blocks Line of Sight")))
+			return false;
         return true;
     }
 }
