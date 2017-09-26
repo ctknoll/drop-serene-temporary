@@ -38,8 +38,7 @@ public class PlayerMovement : MonoBehaviour
 	void Update ()
     {
         GameObject camera = GameObject.Find("Main Camera");
-        transform.LookAt(Quaternion.Euler(-transform.rotation.x, 0, 0) * (transform.position + camera.transform.forward));
-        // transform.rotation = cameraRotation;
+        transform.rotation = new Quaternion(camera.transform.rotation.x, camera.transform.rotation.y, 0, transform.rotation.w);
         playerJumpAndGravity();
         playerMovement();
         staminaManagement();
