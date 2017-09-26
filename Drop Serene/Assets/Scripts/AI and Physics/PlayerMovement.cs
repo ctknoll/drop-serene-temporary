@@ -27,18 +27,23 @@ public class PlayerMovement : MonoBehaviour
     private bool exhausted;
     public float exhaustedMultiplier;
 
+    [HideInInspector]
+    GameObject camera;
+    float cameraZ;
+
     // Use this for initialization
     void Start ()
     {
         controller = GetComponent<CharacterController>();
         stamina = 1;
+        camera = GameObject.Find("Main Camera");
+        cameraZ = camera.transform.rotation.eulerAngles.x;
 	}
 	
 	// Update is called once per frame
 	void Update ()
     {
-        GameObject camera = GameObject.Find("Main Camera");
-        transform.rotation = new Quaternion(camera.transform.rotation.x, camera.transform.rotation.y, 0, transform.rotation.w);
+        transform.rotation = Quaternion.Euler(cameraZ, camera.transform.rotation.eulerAngles.y, camera.transform.rotation.eulerAngles.z);
         playerJumpAndGravity();
         playerMovement();
         staminaManagement();
