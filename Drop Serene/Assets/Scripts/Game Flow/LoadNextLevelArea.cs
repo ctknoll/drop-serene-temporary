@@ -16,7 +16,7 @@ public class LoadNextLevelArea : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
-        SceneManager.LoadScene(levelName);
+        if(other.gameObject.tag == "Player") SceneManager.LoadScene(levelName);
     }
 
 }
