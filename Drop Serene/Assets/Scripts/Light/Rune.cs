@@ -57,6 +57,7 @@ public class Rune : LightableObject
 [CustomEditor(typeof(Rune)), CanEditMultipleObjects]
 public class RuneEditor : Editor
 {
+
 //	public SerializedProperty 
 //	public override void OnEnable()
 //	{

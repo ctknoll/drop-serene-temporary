@@ -38,7 +38,7 @@ public class DirectionalRune : LightableObject
             }
 
             base.Update();
-        }		
+        }
 	}
 
     public override void OnActivate()

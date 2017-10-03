@@ -32,7 +32,7 @@ public class DoorRune : LightableObject
         }
 
 		if(currentColor != runeDark)
-            base.Update();
+            base.Update();        
     }
 
     public override void OnActivate()
@@ -45,8 +45,9 @@ public class DoorRune : LightableObject
     public override void LightOn()
     {
         isLit = true;
-		currentColor = runeLit;
-		currentIntensity = lightOnIntensity;
+
+        currentColor = runeLit;
+        currentIntensity = lightOnIntensity;
 
         if (!isActive)
         {
@@ -57,5 +58,7 @@ public class DoorRune : LightableObject
     public override void LightOff()
     {
         isLit = false;
+        currentColor = runeDark;
+        currentIntensity = defaultIntensity;
     }
 }
