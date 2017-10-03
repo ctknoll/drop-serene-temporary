@@ -16,7 +16,8 @@ public class Flashlight : MonoBehaviour
 
 	// Use this for initialization
 	void Start () {
-		lightStatus = false;
+        transform.position += Vector3.ClampMagnitude(GetComponentInParent<Transform>().forward, 1);
+        lightStatus = false;
         lightCollider = GetComponent<Collider>();
         lightCollider.enabled = false;
         lt = lightObject.GetComponent<Light>();

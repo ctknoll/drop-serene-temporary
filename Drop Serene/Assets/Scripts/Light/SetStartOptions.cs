@@ -4,15 +4,17 @@ using UnityEngine.UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SetLightOptions : MonoBehaviour {
+public class SetStartOptions : MonoBehaviour {
 
     public Slider lightSlider;
     AmbientLightDefaults lightScript;
     public float minLightLevel = .02F;
     public float maxLightLevel = .4F;
+    public bool invertMouse = false;
 
 	// Use this for initialization
-	void Start () {
+	void Start ()
+    {
         lightScript = GameObject.Find("__MASTER__").GetComponent<AmbientLightDefaults>();
         lightSlider.value = lightScript.intensity;
         lightSlider.minValue = minLightLevel;
@@ -24,21 +26,32 @@ public class SetLightOptions : MonoBehaviour {
         lightScript.intensity = lightSlider.value;
     }
 
+    public void setMouseInversion()
+    {
+        invertMouse = !invertMouse;
+    }
+
     /*public void StartGame()
     {
         PlayerPrefs.SetFloat("LightLevel", lightScript.intensity);
         SceneManager.LoadScene("Level 1");
     }*/
 
-    public void StartLevelOne()
+    public void setPlayerPrefs()
     {
         PlayerPrefs.SetFloat("LightLevel", lightScript.intensity);
+        PlayerPrefs.SetInt("InvertMouse", invertMouse ? 1 : 0);
+    }
+
+    public void StartLevelOne()
+    {
+        setPlayerPrefs();
         SceneManager.LoadScene("Level 1");
     }
 
     public void StartLevelTwo()
     {
-        PlayerPrefs.SetFloat("LightLevel", lightScript.intensity);
+        setPlayerPrefs();
         SceneManager.LoadScene("Level 2");
     }
 }

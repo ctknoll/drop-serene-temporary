@@ -13,6 +13,7 @@ public class CameraController : MonoBehaviour
     public float x;
     public float y;
     public GameObject player;
+    public bool invert;
 
     // Use this for initialization
     void Start ()
@@ -22,6 +23,7 @@ public class CameraController : MonoBehaviour
         y = angles.x;
         player = GameObject.Find("Player");
         Cursor.lockState = CursorLockMode.Locked;
+        invert = PlayerPrefs.GetInt("InvertMouse") == 1 ? true : false;
     }
 	
 	// Update is called once per frame
@@ -31,7 +33,7 @@ public class CameraController : MonoBehaviour
         GetComponent<Camera>().clearFlags = CameraClearFlags.Skybox;
 
         x += Input.GetAxis("Mouse X") * xMouseRotationSpeed * 0.02f;
-        y -= Input.GetAxis("Mouse Y") * yMouseRotationSpeed * 0.02f;
+        y -= (invert ? -1 : 1) * Input.GetAxis("Mouse Y") * yMouseRotationSpeed * 0.02f;
 
         y = ClampAngle(y, yMinPanLimit, yMaxPanLimit);
 
