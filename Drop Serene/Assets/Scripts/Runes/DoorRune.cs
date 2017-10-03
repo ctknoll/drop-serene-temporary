@@ -25,14 +25,13 @@ public class DoorRune : LightableObject
     // Update is called once per frame
     public override void Update()
     {
-		if (door.activeSelf && isActive && !LightingUtils.inLineOfSight(gameObject, door))
+		if (door.activeSelf && isActive)
         {
             door.SetActive(false);
             Debug.Log("Disabled door");
         }
 
-		if(currentColor != runeDark)
-            base.Update();        
+        base.Update();        
     }
 
     public override void OnActivate()
