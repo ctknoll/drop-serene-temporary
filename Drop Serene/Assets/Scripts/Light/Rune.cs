@@ -6,7 +6,7 @@ using UnityEngine.Events;
 using UnityEditor;
 
 [System.Serializable]
-public class VoidEvent : UnityEvent<> {}
+public class VoidEvent : UnityEvent {}
 
 [System.Serializable]
 public class MoveableObjectEvent : UnityEvent<GameObject, Vector3> {}
@@ -57,11 +57,6 @@ public class Rune : LightableObject
 [CustomEditor(typeof(Rune)), CanEditMultipleObjects]
 public class RuneEditor : Editor
 {
-	public SerializedProperty 
-	public override void OnEnable()
-	{
-	}
-
 	public override void OnInspectorGUI()
 	{
 		Rune myRune = target as Rune;
