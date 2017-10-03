@@ -1,16 +1,32 @@
 ﻿using UnityEngine;
+using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
 [RequireComponent(typeof(Collider))]
 [RequireComponent(typeof(Rigidbody))]
 
 public class DoorRune : LightableObject
 {
-    public GameObject door;
-    public float defaultIntensity = .1F;
+	public float defaultIntensity = .1F;
     public float lightOnIntensity = .3F;
 	public Color deactivatedColor;
     public Color runeLit;
     public Color runeDark;
+
+	public GameObject[] platforms;
+	public float moveSpeed;
+	public Vector3 directionToMove;
+
+	private GameObject platObj;
+	private List<Vector3> startPos;
+	private List<Vector3> endPos;
+	private List<Vector3> currentPos;
+	private List<IEnumerator> moveTowards;
+	private List<IEnumerator> moveReturn;
+	private List<float> moveTime;
+	private bool locked;
+	private bool moving;
 
     // Use this for initialization
     public override void Start()
@@ -18,34 +34,92 @@ public class DoorRune : LightableObject
         base.Start();
 		currentIntensity = defaultIntensity;
 		currentColor = deactivatedColor;
-        base.Update();
         GetComponent<Rigidbody>().isKinematic = true;
+		locked = false;
+		moveTime = new List<float>();
+		startPos = new List<Vector3>();
+		endPos = new List<Vector3>();
+		currentPos = new List<Vector3>();
+		moveTowards = new List<IEnumerator>();
+		moveReturn = new List<IEnumerator>();
     }
 
     // Update is called once per frame
     public override void Update()
     {
-		if (door.activeSelf && isActive && !LightingUtils.inLineOfSight(gameObject, door))
-        {
-            door.SetActive(false);
-            Debug.Log("Disabled door");
-        }
+		bool tmpActive;
+		if (gameObject.GetComponent<LinkedRune>() && gameObject.GetComponent<LinkedRune>().allLinked)
+		{
+			Debug.Log ("We Are Linked");
+			tmpActive = isLinkedActive;
+		}
+		else
+			tmpActive = isActive;
+		if (tmpActive && !locked && !moving)
+		{
+			locked = true;
+			moving = true;
+			int i = 0;
+			currentPos.Clear();
+			foreach (GameObject platform in platforms)
+			{
+				if(startPos.Count < platforms.Length) startPos.Add(platform.transform.position);
+				if(endPos.Count < platforms.Length) endPos.Add(platform.transform.position + directionToMove);
+				moveTime.Add((directionToMove.magnitude / moveSpeed));
+				IEnumerator ienum = MoveOut(platform, i);
+				moveTowards.Add(ienum);
+				StartCoroutine(ienum);
+				i++;
+			}
+		} 
+		else if (!tmpActive && locked && !moving) 
+		{
+			locked = false;
+			moving = true;
+			int i = 0;
+			currentPos.Clear();
+			foreach (GameObject platform in platforms)
+			{
+				IEnumerator ienum = MoveBack(platform, i);
+				moveReturn.Add(ienum);
+				StartCoroutine(ienum);
+				i++;
+			}
+		}			
 
-		if(currentColor != runeDark)
-            base.Update();        
+        base.Update();
     }
 
     public override void OnActivate()
     {
-        isActive = true;
+		isActive = true;
+		if (gameObject.GetComponent<LinkedRune>())
+		{
+			if (gameObject.GetComponent<LinkedRune>().allLinked)
+			{
+				if (gameObject.GetComponent<LinkedRune>().checkAllLinked() && isActive)
+					isLinkedActive = true;
+				else
+					isLinkedActive = false;
+			}
+		}
     }
 
-    public override void OnDeactivate() { }
+    public override void OnDeactivate() 
+	{ 
+		isActive = false;
+	}
 
     public override void LightOn()
     {
         isLit = true;
-
+		if (gameObject.GetComponent<LinkedRune> ())
+		{
+			if (gameObject.GetComponent<LinkedRune> ().mutuallyExclusive)
+			{
+				gameObject.GetComponent<LinkedRune> ().checkMutuallyExclusive();
+			}				
+		}
         currentColor = runeLit;
         currentIntensity = lightOnIntensity;
 
@@ -61,4 +135,33 @@ public class DoorRune : LightableObject
         currentColor = runeDark;
         currentIntensity = defaultIntensity;
     }
+
+	public IEnumerator MoveOut(GameObject platform, int index)
+	{
+		float panStart = Time.time;
+		currentPos.Add(platform.transform.position);
+		moveTime[index] = ((currentPos[index] - endPos[index]).magnitude / moveSpeed);
+		while ((Time.time < panStart + moveTime[index]) && isActive)
+		{
+			platform.transform.position = Vector3.Lerp(currentPos[index], endPos[index], (Time.time - panStart) / moveTime[index]);
+			yield return null;
+		}
+		moving = false;
+	}
+
+	public IEnumerator MoveBack(GameObject platform, int index)
+	{
+		float panStart = Time.time;
+		currentPos.Add(platform.transform.position);
+		moveTime[index] = ((currentPos[index] - startPos[index]).magnitude / moveSpeed);
+		while (Time.time < panStart + moveTime[index] && !isActive)
+		{
+			platform.transform.position = Vector3.Lerp(currentPos[index], startPos[index], (Time.time - panStart) / moveTime[index]);
+			yield return null;
+		}
+		moveTime.Clear();
+		moveTowards.Clear();
+		moveReturn.Clear();
+		moving = false;
+	}
 }

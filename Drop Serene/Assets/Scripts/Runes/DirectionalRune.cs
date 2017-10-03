@@ -37,21 +37,48 @@ public class DirectionalRune : LightableObject
 				currentIntensity = lightOnIntensity;
             }
 
-            base.Update();
+            
         }
+		if (!isActive)
+		{
+			currentColor = deactivatedColor;
+			currentIntensity = defaultIntensity;
+		}
+
+		base.Update();
 	}
 
     public override void OnActivate()
     {
-        isActive = true;
+		if (gameObject.GetComponent<LinkedRune> ())
+		{
+			if (gameObject.GetComponent<LinkedRune> ().allLinked)
+			{
+				if (gameObject.GetComponent<LinkedRune> ().runeIsActive)
+					isActive = true;
+			}
+			else
+				isActive = true;
+		}
+		else
+			isActive = true;
     }
 
-    public override void OnDeactivate() {}
+    public override void OnDeactivate() 
+	{
+		isActive = false;
+	}
 
     public override void LightOn()
     {
         isLit = true;
-
+		if (gameObject.GetComponent<LinkedRune> ())
+		{
+			if (gameObject.GetComponent<LinkedRune> ().mutuallyExclusive)
+			{
+				gameObject.GetComponent<LinkedRune> ().checkMutuallyExclusive();
+			}				
+		}
         if(!isActive)
         {            
             OnActivate();
@@ -59,7 +86,7 @@ public class DirectionalRune : LightableObject
     }
 
     public override void LightOff()
-    {
-        isLit = false;
-    }
+	{
+		isLit = false;
+	}
 }

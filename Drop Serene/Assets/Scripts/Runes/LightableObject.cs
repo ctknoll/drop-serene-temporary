@@ -5,6 +5,7 @@ public abstract class LightableObject : MonoBehaviour
     Renderer rend;    
     public bool isLit = false;
     public bool isActive = false;
+	public bool isLinkedActive = false;
 
     [HideInInspector]
     public Material runeMaterial;
