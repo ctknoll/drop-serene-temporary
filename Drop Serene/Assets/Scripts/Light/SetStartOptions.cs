@@ -31,27 +31,11 @@ public class SetStartOptions : MonoBehaviour {
         invertMouse = !invertMouse;
     }
 
-    /*public void StartGame()
-    {
-        PlayerPrefs.SetFloat("LightLevel", lightScript.intensity);
-        SceneManager.LoadScene("Level 1");
-    }*/
-
     public void setPlayerPrefs()
     {
         PlayerPrefs.SetFloat("LightLevel", lightScript.intensity);
         PlayerPrefs.SetInt("InvertMouse", invertMouse ? 1 : 0);
     }
 
-    public void StartLevelOne()
-    {
-        setPlayerPrefs();
-        SceneManager.LoadScene("Level 1");
-    }
-
-    public void StartLevelTwo()
-    {
-        setPlayerPrefs();
-        SceneManager.LoadScene("Level 2");
-    }
+    
 }

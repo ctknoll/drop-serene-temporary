@@ -22,7 +22,7 @@ public class GamestateUtilities : MonoBehaviour {
         }
         if(Input.GetButtonDown("Escape"))
         {
-            Exit();
+            // Bring up game menu that pauses the game, go to menu and restart options
         }
 	}
 
@@ -42,6 +42,11 @@ public class GamestateUtilities : MonoBehaviour {
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
+
+	public void LoadScene(string sceneName)
+	{
+		SceneManager.LoadScene(sceneName);
+	}
 
     public void Exit()
     {
