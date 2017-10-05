@@ -42,7 +42,7 @@ public class LinkedRune : MonoBehaviour
 			{
 				if (!runeType.isActive)
 				{
-					allLinked = false;
+					allinked = false;
 				}
 			}
 		}

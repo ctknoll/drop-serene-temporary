@@ -54,7 +54,7 @@ public class DoorRune : LightableObject
 			tmpActive = isLinkedActive;
 		}
 		else
-			tmpActive = isActive;
+			tmpActive = isLinkedActive;
 		if (tmpActive && !locked && !moving)
 		{
 			locked = true;
