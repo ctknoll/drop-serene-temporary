@@ -7,7 +7,6 @@ public class LinkedRune : MonoBehaviour
 {
 
 	public bool mutuallyExclusive;
-	public bool isMutuallyExclusive;
 	public bool allLinked;
 	public bool runeIsActive;
 
@@ -42,7 +41,7 @@ public class LinkedRune : MonoBehaviour
 			{
 				if (!runeType.isActive)
 				{
-					allLinked = false;
+					allinked = false;
 				}
 			}
 		}

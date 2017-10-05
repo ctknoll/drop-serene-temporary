@@ -85,8 +85,27 @@ public class DoorRune : LightableObject
 				StartCoroutine(ienum);
 				i++;
 			}
-		}			
+		}
+        if (isActive)
+        {
+            if (!isLit)
+            {
+                currentColor = runeDark;
+                currentIntensity = defaultIntensity;
+            }
+            else
+            {
+                currentColor = runeLit;
+                currentIntensity = lightOnIntensity;
+            }
 
+
+        }
+        if (!isActive)
+        {
+            currentColor = deactivatedColor;
+            currentIntensity = defaultIntensity;
+        }
         base.Update();
     }
 
