@@ -5,9 +5,10 @@ using UnityStandardAssets.Utility;
 
 public class Flashlight : MonoBehaviour
 {
-	public GameObject lightObject;
+	public GameObject lightObject;    
 
     [HideInInspector]
+    GamestateUtilities gameStateUtilities;
     public bool lightStatus;
     public Light lt;
     public LerpControlledBob lightBob;
@@ -23,29 +24,33 @@ public class Flashlight : MonoBehaviour
         lt = lightObject.GetComponent<Light>();
         lightBob = new LerpControlledBob();
         litObjects = new List<Collider>();
-	}
+        gameStateUtilities = GameObject.Find("__MASTER__").GetComponent<GamestateUtilities>();
+    }
 	
 	// Update is called once per frame
 	void Update ()
-    {        
-        if (!lightStatus) {
-			lt.intensity = 0;
-		} else {
-			lt.intensity = 5;
-		}
-		if (Input.GetButtonDown ("Fire1"))
+    {
+        if (!lightStatus)
+        {
+            lt.intensity = 0;
+        }
+        else
+        {
+            lt.intensity = 5;
+        }
+        if (Input.GetButtonDown("Fire1"))
         {
             List<Collider> tempList = new List<Collider>(litObjects);
             foreach (Collider light in tempList)
             {
-                if (lightStatus)                
+                if (lightStatus)
                     OnTriggerExit(light);
                 else
                     OnTriggerStay(light);
             }
             lightStatus = !lightStatus;
             lightCollider.enabled = lightStatus;
-		}
+        }
 	}
 
     void OnTriggerStay(Collider other)

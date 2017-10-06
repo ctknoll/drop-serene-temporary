@@ -1,28 +1,33 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GamestateUtilities : MonoBehaviour {
 
+    CanvasGroup pauseMenu = null;
+    public bool isPaused;
+
+    public readonly string[] levels = {"Level 1", "Level 2"};
+
 	// Use this for initialization
-	void Start () {
-        
+	void Start ()
+    {        
+        if(inGame())
+        {
+            pauseMenu = GameObject.Find("PlayerUI").GetComponentInChildren<CanvasGroup>();                
+            isPaused = false;
+            TogglePauseMenu();
+        }        
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		if(Input.GetKeyDown(KeyCode.P))
+	void Update ()
+    {        
+        Debug.Log(inGame());
+        if (Input.GetButtonDown("Escape") && inGame())
         {
             Pause();
-        }
-        if(Input.GetKeyDown(KeyCode.R))
-        {
-            Restart();
-        }
-        if(Input.GetButtonDown("Escape"))
-        {
-            // Bring up game menu that pauses the game, go to menu and restart options
+            TogglePauseMenu();
         }
 	}
 
@@ -47,6 +52,29 @@ public class GamestateUtilities : MonoBehaviour {
 	{
 		SceneManager.LoadScene(sceneName);
 	}
+
+    public bool inGame()
+    {
+        int pos = Array.IndexOf(levels, SceneManager.GetActiveScene().name);
+        if (pos < 0)
+            return false;
+        return true;
+    }
+
+    void TogglePauseMenu()
+    {
+        if(pauseMenu)
+        {
+            pauseMenu.interactable = isPaused;
+
+            foreach (Transform g in pauseMenu.GetComponentInChildren<Transform>())
+            {
+                g.gameObject.SetActive(isPaused);
+            }
+
+            isPaused = !isPaused;
+        }        
+    }
 
     public void Exit()
     {

@@ -12,7 +12,9 @@ namespace UnityStandardAssets.Characters.FirstPerson
         public CurveControlledBob motionBob = new CurveControlledBob();
         public LerpControlledBob jumpAndLandingBob = new LerpControlledBob();
         public float StrideInterval;
-        public AudioSource stepAudio;
+        public AudioSource audio;
+        public AudioClip walkStep;
+        public AudioClip sprintStep;
         private bool m_PreviouslyGrounded;
         private bool midstep = false;
         private Vector3 m_OriginalCameraPosition;
@@ -25,7 +27,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             Camera = GameObject.Find("Main Camera").GetComponent<Camera>();
             m_OriginalCameraPosition = Camera.transform.localPosition;
             motionBob.Setup(Camera, StrideInterval);
-            stepAudio = GetComponentInParent<AudioSource>();            
+            audio = GetComponentInParent<AudioSource>();            
         }
 
 
@@ -63,7 +65,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
             if(Input.GetKeyDown(KeyCode.B))
             {
-                stepAudio.PlayOneShot(stepAudio.clip);
+                audio.PlayOneShot(walkStep);
             }
 
             //Landing from jump
@@ -77,18 +79,19 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
         IEnumerator playFootsteps()
         {
+            audio.pitch = UnityEngine.Random.Range(.9F, 1F);
+
             if (!playerController.GetComponent<PlayerMovement>().isSprinting)
             {
-                stepAudio.volume = UnityEngine.Random.Range(.5F, .75F);
+                audio.volume = UnityEngine.Random.Range(.5F, .75F);
             }                
             else
             {
-                stepAudio.volume = UnityEngine.Random.Range(.9F, 1F);     
-            }           
+                audio.volume = UnityEngine.Random.Range(.9F, 1F);     
+            }            
 
-            stepAudio.pitch = UnityEngine.Random.Range(.9F, 1F);
+            audio.PlayOneShot(walkStep);
 
-            stepAudio.PlayOneShot(stepAudio.clip);
             yield return new WaitForSeconds(StrideInterval/2F);
             midstep = false;
         }
