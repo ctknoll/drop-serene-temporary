@@ -15,7 +15,7 @@ public class GamestateUtilities : MonoBehaviour {
         if(inGame())
         {
             pauseMenu = GameObject.Find("PlayerUI").GetComponentInChildren<CanvasGroup>();                
-            isPaused = false;
+            isPaused = true;
             TogglePauseMenu();
         }        
 	}
@@ -65,14 +65,14 @@ public class GamestateUtilities : MonoBehaviour {
     {
         if(pauseMenu)
         {
+            isPaused = !isPaused;
             pauseMenu.interactable = isPaused;
 
             foreach (Transform g in pauseMenu.GetComponentInChildren<Transform>())
             {
                 g.gameObject.SetActive(isPaused);
             }
-
-            isPaused = !isPaused;
+            
         }        
     }
 
