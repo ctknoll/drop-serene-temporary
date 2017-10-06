@@ -15,6 +15,9 @@ public class Flashlight : MonoBehaviour
     public Collider lightCollider;
     List<Collider> litObjects;
 
+    public GameObject player;
+    GameObject rune;
+
 	// Use this for initialization
 	void Start () {
         transform.position += Vector3.ClampMagnitude(GetComponentInParent<Transform>().forward, 1);
@@ -25,6 +28,8 @@ public class Flashlight : MonoBehaviour
         lightBob = new LerpControlledBob();
         litObjects = new List<Collider>();
         gameStateUtilities = GameObject.Find("__MASTER__").GetComponent<GamestateUtilities>();
+        player = GameObject.Find("Player");
+        rune = GameObject.Find("Directional Rune (1)");
     }
 	
 	// Update is called once per frame
@@ -51,12 +56,12 @@ public class Flashlight : MonoBehaviour
             lightStatus = !lightStatus;
             lightCollider.enabled = lightStatus;
         }
-	}
+    }
 
     void OnTriggerStay(Collider other)
     {        
-        if (other.GetComponent<LightableObject>()/* && LightingUtils.inLineOfSight(other.gameObject, gameObject)*/)
-        {
+        if (other.GetComponent<LightableObject>() && LightingUtils.inLineOfSight(player, other.gameObject))
+        {            
             if(!litObjects.Contains(other))
             {
                 other.GetComponent<LightableObject>().LightOn();
@@ -67,8 +72,8 @@ public class Flashlight : MonoBehaviour
     }
 
     void OnTriggerExit(Collider other)
-    {
-        if (other.GetComponent<LightableObject>()/* && LightingUtils.inLineOfSight(other.gameObject, gameObject)*/)
+    {        
+        if (other.GetComponent<LightableObject>() && LightingUtils.inLineOfSight(player, other.gameObject))
         {
             other.GetComponent<LightableObject>().LightOff();
             litObjects.Remove(other);
