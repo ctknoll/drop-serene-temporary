@@ -5,7 +5,7 @@ using UnityEngine;
 public class RuneIndicator : MonoBehaviour {
 
 
-    private MeshRenderer indicatorMesh;
+    private Renderer indicatorMesh;
 
     public LightableObject linkedRune;
 
@@ -14,7 +14,7 @@ public class RuneIndicator : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        indicatorMesh = this.gameObject.GetComponent<MeshRenderer>();
+        indicatorMesh = this.gameObject.GetComponent<Renderer>();
 	}
 	
 	// Update is called once per frame
