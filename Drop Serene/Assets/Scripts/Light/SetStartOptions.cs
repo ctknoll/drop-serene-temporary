@@ -1,8 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine.UI;
+﻿using UnityEngine.UI;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class SetStartOptions : MonoBehaviour {
 
@@ -26,16 +23,14 @@ public class SetStartOptions : MonoBehaviour {
         lightScript.intensity = lightSlider.value;
     }
 
-    public void setMouseInversion()
+    public void SetMouseInversion()
     {
         invertMouse = !invertMouse;
     }
 
-    public void setPlayerPrefs()
+    public void SetPlayerPrefs()
     {
         PlayerPrefs.SetFloat("LightLevel", lightScript.intensity);
         PlayerPrefs.SetInt("InvertMouse", invertMouse ? 1 : 0);
-    }
-
-    
+    }    
 }

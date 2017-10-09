@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class GamestateUtilities : MonoBehaviour {
 
+    SetStartOptions startOptions;
     CanvasGroup pauseMenu = null;
     public bool isPaused;
 
@@ -11,10 +12,12 @@ public class GamestateUtilities : MonoBehaviour {
 
 	// Use this for initialization
 	void Start ()
-    {        
-        if(inGame())
+    {
+        startOptions = GetComponent<SetStartOptions>();
+
+        if (inGame())
         {
-            pauseMenu = GameObject.Find("PlayerUI").GetComponentInChildren<CanvasGroup>();                
+            pauseMenu = GameObject.Find("PlayerUI").GetComponentInChildren<CanvasGroup>();            
             isPaused = true;
             TogglePauseMenu();
         }        
@@ -49,8 +52,8 @@ public class GamestateUtilities : MonoBehaviour {
     }
 
 	public void LoadScene(string sceneName)
-	{
-		SceneManager.LoadScene(sceneName);
+	{        
+        SceneManager.LoadScene(sceneName);
 	}
 
     public bool inGame()
