@@ -8,7 +8,7 @@ public class GamestateUtilities : MonoBehaviour {
     CanvasGroup pauseMenu = null;
     public bool isPaused;
 
-    public readonly string[] levels = {"Level 1", "Level 2"};
+    public static readonly string[] levels = {"Level 1", "Level 2"};
 
 	// Use this for initialization
 	void Start ()
@@ -27,6 +27,8 @@ public class GamestateUtilities : MonoBehaviour {
 	void Update ()
     {        
         Debug.Log(inGame());
+        if(!inGame())
+            Cursor.lockState = CursorLockMode.None;
         if (Input.GetButtonDown("Escape") && inGame())
         {
             Pause();
@@ -58,7 +60,15 @@ public class GamestateUtilities : MonoBehaviour {
 
     public bool inGame()
     {
-        int pos = Array.IndexOf(levels, SceneManager.GetActiveScene().name);
+        int pos = Array.IndexOf(GamestateUtilities.levels, SceneManager.GetActiveScene().name);
+        if (pos < 0)
+            return false;
+        return true;
+    }
+
+    public static bool inGame(string level)
+    {
+        int pos = Array.IndexOf(GamestateUtilities.levels, level);
         if (pos < 0)
             return false;
         return true;

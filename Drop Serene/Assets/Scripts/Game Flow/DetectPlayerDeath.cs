@@ -15,7 +15,8 @@ public class DetectPlayerDeath : MonoBehaviour {
     {
         if (Vector3.Magnitude(transform.position - enemy.position) < 1.2F)
         {
-            Debug.Log("player has died");            
+            Debug.Log("player has died");
+            Cursor.lockState = CursorLockMode.None;          
             gameStateUtils.LoadScene("Dead");
         }    
     }

@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.SceneManagement;
+using System.Linq;
 
 public class CameraController : MonoBehaviour
 {
@@ -22,7 +21,6 @@ public class CameraController : MonoBehaviour
         x = angles.y;
         y = angles.x;
         player = GameObject.Find("Player");
-        Cursor.lockState = CursorLockMode.Locked;
         invert = PlayerPrefs.GetInt("InvertMouse") == 1 ? true : false;
     }
 	
@@ -32,8 +30,18 @@ public class CameraController : MonoBehaviour
         GetComponent<Camera>().orthographic = false;
         GetComponent<Camera>().clearFlags = CameraClearFlags.Skybox;
 
-        x += Input.GetAxis("Mouse X") * xMouseRotationSpeed * 0.02f;
-        y -= (invert ? -1 : 1) * Input.GetAxis("Mouse Y") * yMouseRotationSpeed * 0.02f;
+        float xRaw = Input.GetAxis("Mouse X");
+        float yRaw = Input.GetAxis("Mouse Y");
+        if (GameObject.Find("__MASTER__").GetComponent<GamestateUtilities>().isPaused)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            xRaw = 0; yRaw = 0;
+        }
+        else
+            Cursor.lockState = CursorLockMode.Locked;
+
+        x += xRaw * xMouseRotationSpeed * 0.02f;
+        y -= (invert ? -1 : 1) * yRaw * yMouseRotationSpeed * 0.02f;
 
         y = ClampAngle(y, yMinPanLimit, yMaxPanLimit);
 
