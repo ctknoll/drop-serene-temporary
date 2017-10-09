@@ -30,31 +30,30 @@ public class GamestateUtilities : MonoBehaviour {
         if(!inGame())
             Cursor.lockState = CursorLockMode.None;
         if (Input.GetButtonDown("Escape") && inGame())
-        {
-            Pause();
-            TogglePauseMenu();
+        {            
+            TogglePauseMenu();            
         }
 	}
 
     public void Pause()
     {
-        if(Time.timeScale == 0F)
-        {
-            Time.timeScale = 1F;
-        }
-        else
-        {
-            Time.timeScale = 0F;
-        }        
+        Time.timeScale = 0F;
+    }
+
+    public void Unpause()
+    {
+        Time.timeScale = 1F;
     }
 
     public void Restart()
     {
+        Unpause();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
 	public void LoadScene(string sceneName)
-	{        
+	{
+        Unpause();
         SceneManager.LoadScene(sceneName);
 	}
 
@@ -81,12 +80,16 @@ public class GamestateUtilities : MonoBehaviour {
             isPaused = !isPaused;
             pauseMenu.interactable = isPaused;
 
+            if (isPaused)
+                Pause();
+            else
+                Unpause();
+
             foreach (Transform g in pauseMenu.GetComponentInChildren<Transform>())
             {
                 g.gameObject.SetActive(isPaused);
-            }
-            
-        }        
+            }            
+        }
     }
 
     public void Exit()
