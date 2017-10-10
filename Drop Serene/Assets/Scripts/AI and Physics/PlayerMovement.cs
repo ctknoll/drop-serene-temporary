@@ -27,6 +27,8 @@ public class PlayerMovement : MonoBehaviour
     private bool exhausted;
     public float exhaustedMultiplier;
 
+	public bool isInLight;
+
     [HideInInspector]
     GameObject camera;
     float cameraZ;
@@ -47,12 +49,14 @@ public class PlayerMovement : MonoBehaviour
         playerJumpAndGravity();
         playerMovement();
         staminaManagement();
+		isInLight = playerInLight();
+		Debug.Log(isInLight);
     }
 
 
     void playerMovement()
     {
-        float sprintModifier = isSprinting ? sprintMultiplier : 1F;
+		float sprintModifier = isSprinting ? sprintMultiplier : 1F;
         float exhaustedModifier = exhausted ? exhaustedMultiplier : 1F;
         isSprinting = Input.GetButton("Fire3") && !exhausted ? true : false;
         if (Input.GetAxisRaw("Horizontal") > 0)
@@ -123,4 +127,14 @@ public class PlayerMovement : MonoBehaviour
         }
         return false;
     }
+
+	public bool playerInLight()
+	{
+		bool inLight = false;
+		foreach(Light light in GameObject.Find("Lights").GetComponentsInChildren<Light>())
+		{
+			if(LightingUtils.objectInLight(gameObject, light)) inLight = true;
+		}
+	    return inLight;
+	}
 }

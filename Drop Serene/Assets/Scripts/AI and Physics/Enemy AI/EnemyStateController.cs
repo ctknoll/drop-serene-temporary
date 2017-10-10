@@ -62,7 +62,7 @@ public class EnemyStateController : MonoBehaviour
 			foundPlayer = null;
         }
 
-		Debug.Log ("Line of sight " + LightingUtils.inLineOfSight (gameObject, player.gameObject));
+		Debug.Log ("Monster Line of sight " + LightingUtils.inLineOfSight (gameObject, player.gameObject));
 	}
 
     public void heardNoise(Vector3 location) {alertLocation = location;}
