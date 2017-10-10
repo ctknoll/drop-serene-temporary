@@ -51,6 +51,11 @@ public class GamestateUtilities : MonoBehaviour {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
+    public void LoadSceneWhereLastDied()
+    {
+        LoadScene(DetectPlayerDeath.lastDiedSceneName);
+    }
+
 	public void LoadScene(string sceneName)
 	{
         Unpause();
