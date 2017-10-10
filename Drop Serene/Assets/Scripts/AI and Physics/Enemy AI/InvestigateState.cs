@@ -31,9 +31,13 @@ public class InvestigateState : State
 
     public override void EvaluateTransition()
     {
-        //If he's at the location of the last noise...
+        //If he's at the location of the last noise... OR location is unreachable
         if ((location - controller.agent.transform.position).magnitude < 1) controller.currentState = controller.roamState;
+
 		if (controller.foundPlayer != null) controller.currentState = controller.chaseState;
+		//chase state with los && proximity or los && light
+		if (LightingUtils.inLineOfSight (controller.gameObject, controller.player.gameObject) && Vector3.Distance (controller.transform.position, controller.player.transform.position) < 4F)
+			controller.currentState = controller.chaseState;
     }
 
 }

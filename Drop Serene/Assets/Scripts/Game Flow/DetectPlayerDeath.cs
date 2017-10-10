@@ -6,7 +6,7 @@ public class DetectPlayerDeath : MonoBehaviour {
     Transform enemy;
     GamestateUtilities gameStateUtils;
 
-    public static string lastDiedSceneName;
+    public static string lastDiedSceneName = "Level 1";
 
     void Start()
     {
