@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Events;
-using UnityEditor;
+﻿/*using System;
+//using System.Collections;
+//using System.Collections.Generic;
+//using UnityEngine;
+//using UnityEngine.Events;
+//using UnityEditor;
 
 [System.Serializable]
 public class VoidEvent : UnityEvent {}
@@ -75,4 +75,4 @@ public class RuneEditor : Editor
 			
 		}
 	}
-}
+}*/

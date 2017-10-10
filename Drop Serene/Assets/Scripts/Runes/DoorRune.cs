@@ -50,7 +50,6 @@ public class DoorRune : LightableObject
 		bool tmpActive;
 		if (gameObject.GetComponent<LinkedRune>() && gameObject.GetComponent<LinkedRune>().allLinked)
 		{
-			Debug.Log ("We Are Linked");
 			tmpActive = isLinkedActive;
 		}
 		else
