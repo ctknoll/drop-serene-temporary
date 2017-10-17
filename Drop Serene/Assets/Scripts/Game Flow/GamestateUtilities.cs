@@ -26,7 +26,6 @@ public class GamestateUtilities : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {        
-        Debug.Log(inGame());
         if(!inGame())
             Cursor.lockState = CursorLockMode.None;
         if (Input.GetButtonDown("Escape") && inGame())
@@ -49,6 +48,11 @@ public class GamestateUtilities : MonoBehaviour {
     {
         Unpause();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void LoadSceneWhereLastDied()
+    {
+        LoadScene(DetectPlayerDeath.lastDiedSceneName);
     }
 
 	public void LoadScene(string sceneName)

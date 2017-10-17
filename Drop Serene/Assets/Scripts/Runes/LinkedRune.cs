@@ -15,7 +15,6 @@ public class LinkedRune : MonoBehaviour
 	void Start () 
 	{
 		runeIsActive = false;
-		Debug.Log (linkedRunes);
 	}
 	
 	public void checkMutuallyExclusive()

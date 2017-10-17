@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DetectPlayerDeath : MonoBehaviour {
 
     Transform enemy;
-    GamestateUtilities gameStateUtils;    
+    GamestateUtilities gameStateUtils;
+
+    public static string lastDiedSceneName = "Level 1";
 
     void Start()
     {
@@ -15,7 +18,11 @@ public class DetectPlayerDeath : MonoBehaviour {
     {
         if (Vector3.Magnitude(transform.position - enemy.position) < 1.2F)
         {
+
+            lastDiedSceneName = SceneManager.GetActiveScene().name;
+
             Debug.Log("player has died");
+
             Cursor.lockState = CursorLockMode.None;          
             gameStateUtils.LoadScene("Dead");
         }    

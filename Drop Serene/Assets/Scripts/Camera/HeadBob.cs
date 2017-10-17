@@ -45,7 +45,6 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 {
                     midstep = true;
                     StartCoroutine("playFootsteps");
-                    Debug.Log("down");
                     float sprintMod = playerController.GetComponent<PlayerMovement>().isSprinting ? playerController.GetComponent<PlayerMovement>().sprintMultiplier : 1;
                     ScriptableObject.CreateInstance<Noise>().makeNoise(UnityEngine.Random.Range(footstepVolume.x, footstepVolume.y) * sprintMod, transform.position);
                 }

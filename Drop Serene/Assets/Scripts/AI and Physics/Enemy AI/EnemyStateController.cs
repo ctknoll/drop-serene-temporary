@@ -23,8 +23,7 @@ public class EnemyStateController : MonoBehaviour
 	public GameObject foundPlayer;
 
 	AudioSource audioSource;
-
-	//REMOVE AFTER TESTING
+	[HideInInspector]
 	public GameObject player;
 
     // Use this for initialization
@@ -42,6 +41,7 @@ public class EnemyStateController : MonoBehaviour
         currentState.OnStateEnter();
 
 		player = GameObject.Find("Player");
+		Debug.Log ("Found player? " + player);
 		audioSource = GetComponent<AudioSource> ();
 
 		// Start monster's footsteps (Always looping - since the monster should always be moving)
@@ -50,7 +50,7 @@ public class EnemyStateController : MonoBehaviour
 	
 	// Update is called once per frame
 	void Update () 
-	{
+	{	
 		currentState.OnStateUpdate();
         currentState.EvaluateTransition();
         if(!expectedState.Equals(currentState))
@@ -62,7 +62,7 @@ public class EnemyStateController : MonoBehaviour
 			foundPlayer = null;
         }
 
-		Debug.Log ("Line of sight " + LightingUtils.inLineOfSight (gameObject, player.gameObject));
+		Debug.Log ("Monster Line of sight " + LightingUtils.inLineOfSight (gameObject, player.gameObject));
 	}
 
     public void heardNoise(Vector3 location) {alertLocation = location;}
