@@ -23,7 +23,7 @@ public class EnemyStateController : MonoBehaviour
 	public GameObject foundPlayer;
 
 	AudioSource audioSource;
-	[HideInInspector]
+	
 	public GameObject player;
 
     // Use this for initialization
