@@ -8,7 +8,7 @@ public class GamestateUtilities : MonoBehaviour {
     CanvasGroup pauseMenu = null;
     public bool isPaused;
 
-    public static readonly string[] levels = {"Level 1", "Level 2"};
+    public static readonly string[] notInGame = {"Start", "Settings", "Won", "Dead"};
 
 	// Use this for initialization
 	void Start ()
@@ -63,18 +63,18 @@ public class GamestateUtilities : MonoBehaviour {
 
     public bool inGame()
     {
-        int pos = Array.IndexOf(GamestateUtilities.levels, SceneManager.GetActiveScene().name);
+        int pos = Array.IndexOf(GamestateUtilities.notInGame, SceneManager.GetActiveScene().name);
         if (pos < 0)
-            return false;
-        return true;
+            return true;
+        return false;
     }
 
     public static bool inGame(string level)
     {
-        int pos = Array.IndexOf(GamestateUtilities.levels, level);
+        int pos = Array.IndexOf(GamestateUtilities.notInGame, level);
         if (pos < 0)
-            return false;
-        return true;
+            return true;
+        return false;
     }
 
     void TogglePauseMenu()

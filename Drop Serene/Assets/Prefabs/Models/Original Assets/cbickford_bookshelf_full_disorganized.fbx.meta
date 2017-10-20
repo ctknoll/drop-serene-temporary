@@ -1,0 +1,1077 @@
+fileFormatVersion: 2
+guid: 2c1df8d66347fcb45b2b962fb31aa9d3
+timeCreated: 1507883464
+licenseType: Free
+ModelImporter:
+  serializedVersion: 21
+  fileIDToRecycleName:
+    100000: book_cover
+    100002: book_cover 1
+    100004: book_cover 10
+    100006: book_cover 11
+    100008: book_cover 12
+    100010: book_cover 13
+    100012: book_cover 14
+    100014: book_cover 15
+    100016: book_cover 16
+    100018: book_cover 17
+    100020: book_cover 18
+    100022: book_cover 19
+    100024: book_cover 2
+    100026: book_cover 20
+    100028: book_cover 21
+    100030: book_cover 22
+    100032: book_cover 23
+    100034: book_cover 24
+    100036: book_cover 25
+    100038: book_cover 26
+    100040: book_cover 27
+    100042: book_cover 28
+    100044: book_cover 29
+    100046: book_cover 3
+    100048: book_cover 30
+    100050: book_cover 31
+    100052: book_cover 32
+    100054: book_cover 33
+    100056: book_cover 34
+    100058: book_cover 35
+    100060: book_cover 36
+    100062: book_cover 37
+    100064: book_cover 38
+    100066: book_cover 39
+    100068: book_cover 4
+    100070: book_cover 40
+    100072: book_cover 41
+    100074: book_cover 42
+    100076: book_cover 43
+    100078: book_cover 44
+    100080: book_cover 45
+    100082: book_cover 46
+    100084: book_cover 47
+    100086: book_cover 48
+    100088: book_cover 49
+    100090: book_cover 5
+    100092: book_cover 50
+    100094: book_cover 51
+    100096: book_cover 52
+    100098: book_cover 53
+    100100: book_cover 54
+    100102: book_cover 55
+    100104: book_cover 56
+    100106: book_cover 57
+    100108: book_cover 58
+    100110: book_cover 59
+    100112: book_cover 6
+    100114: book_cover 60
+    100116: book_cover 61
+    100118: book_cover 62
+    100120: book_cover 63
+    100122: book_cover 64
+    100124: book_cover 65
+    100126: book_cover 66
+    100128: book_cover 67
+    100130: book_cover 68
+    100132: book_cover 69
+    100134: book_cover 7
+    100136: book_cover 70
+    100138: book_cover 71
+    100140: book_cover 72
+    100142: book_cover 73
+    100144: book_cover 74
+    100146: book_cover 75
+    100148: book_cover 76
+    100150: book_cover 77
+    100152: book_cover 78
+    100154: book_cover 79
+    100156: book_cover 8
+    100158: book_cover 80
+    100160: book_cover 9
+    100162: book_group1
+    100164: book_group1 1
+    100166: book_group10
+    100168: book_group10 1
+    100170: book_group11
+    100172: book_group11 1
+    100174: book_group12
+    100176: book_group12 1
+    100178: book_group13
+    100180: book_group13 1
+    100182: book_group14
+    100184: book_group14 1
+    100186: book_group15
+    100188: book_group15 1
+    100190: book_group16
+    100192: book_group16 1
+    100194: book_group17
+    100196: book_group18
+    100198: book_group19
+    100200: book_group2
+    100202: book_group2 1
+    100204: book_group20
+    100206: book_group21
+    100208: book_group22
+    100210: book_group23
+    100212: book_group24
+    100214: book_group25
+    100216: book_group26
+    100218: book_group27
+    100220: book_group28
+    100222: book_group29
+    100224: book_group3
+    100226: book_group3 1
+    100228: book_group30
+    100230: book_group31
+    100232: book_group32
+    100234: book_group33
+    100236: book_group34
+    100238: book_group35
+    100240: book_group36
+    100242: book_group37
+    100244: book_group38
+    100246: book_group39
+    100248: book_group4
+    100250: book_group4 1
+    100252: book_group40
+    100254: book_group41
+    100256: book_group42
+    100258: book_group43
+    100260: book_group44
+    100262: book_group45
+    100264: book_group46
+    100266: book_group47
+    100268: book_group48
+    100270: book_group49
+    100272: book_group5
+    100274: book_group5 1
+    100276: book_group50
+    100278: book_group51
+    100280: book_group52
+    100282: book_group53
+    100284: book_group54
+    100286: book_group55
+    100288: book_group56
+    100290: book_group57
+    100292: book_group58
+    100294: book_group59
+    100296: book_group6
+    100298: book_group6 1
+    100300: book_group60
+    100302: book_group61
+    100304: book_group62
+    100306: book_group63
+    100308: book_group64
+    100310: book_group65
+    100312: book_group7
+    100314: book_group7 1
+    100316: book_group8
+    100318: book_group8 1
+    100320: book_group9
+    100322: book_group9 1
+    100324: book_pages
+    100326: book_pages 1
+    100328: book_pages 10
+    100330: book_pages 11
+    100332: book_pages 12
+    100334: book_pages 13
+    100336: book_pages 14
+    100338: book_pages 15
+    100340: book_pages 16
+    100342: book_pages 17
+    100344: book_pages 18
+    100346: book_pages 19
+    100348: book_pages 2
+    100350: book_pages 20
+    100352: book_pages 21
+    100354: book_pages 22
+    100356: book_pages 23
+    100358: book_pages 24
+    100360: book_pages 25
+    100362: book_pages 26
+    100364: book_pages 27
+    100366: book_pages 28
+    100368: book_pages 29
+    100370: book_pages 3
+    100372: book_pages 30
+    100374: book_pages 31
+    100376: book_pages 32
+    100378: book_pages 33
+    100380: book_pages 34
+    100382: book_pages 35
+    100384: book_pages 36
+    100386: book_pages 37
+    100388: book_pages 38
+    100390: book_pages 39
+    100392: book_pages 4
+    100394: book_pages 40
+    100396: book_pages 41
+    100398: book_pages 42
+    100400: book_pages 43
+    100402: book_pages 44
+    100404: book_pages 45
+    100406: book_pages 46
+    100408: book_pages 47
+    100410: book_pages 48
+    100412: book_pages 49
+    100414: book_pages 5
+    100416: book_pages 50
+    100418: book_pages 51
+    100420: book_pages 52
+    100422: book_pages 53
+    100424: book_pages 54
+    100426: book_pages 55
+    100428: book_pages 56
+    100430: book_pages 57
+    100432: book_pages 58
+    100434: book_pages 59
+    100436: book_pages 6
+    100438: book_pages 60
+    100440: book_pages 61
+    100442: book_pages 62
+    100444: book_pages 63
+    100446: book_pages 64
+    100448: book_pages 65
+    100450: book_pages 66
+    100452: book_pages 67
+    100454: book_pages 68
+    100456: book_pages 69
+    100458: book_pages 7
+    100460: book_pages 70
+    100462: book_pages 71
+    100464: book_pages 72
+    100466: book_pages 73
+    100468: book_pages 74
+    100470: book_pages 75
+    100472: book_pages 76
+    100474: book_pages 77
+    100476: book_pages 78
+    100478: book_pages 79
+    100480: book_pages 8
+    100482: book_pages 80
+    100484: book_pages 9
+    100486: books1
+    100488: books2
+    100490: books3
+    100492: books4
+    100494: books5
+    100496: books6
+    100498: books7
+    100500: books8
+    100502: bookshelf
+    100504: //RootNode
+    400000: book_cover
+    400002: book_cover 1
+    400004: book_cover 10
+    400006: book_cover 11
+    400008: book_cover 12
+    400010: book_cover 13
+    400012: book_cover 14
+    400014: book_cover 15
+    400016: book_cover 16
+    400018: book_cover 17
+    400020: book_cover 18
+    400022: book_cover 19
+    400024: book_cover 2
+    400026: book_cover 20
+    400028: book_cover 21
+    400030: book_cover 22
+    400032: book_cover 23
+    400034: book_cover 24
+    400036: book_cover 25
+    400038: book_cover 26
+    400040: book_cover 27
+    400042: book_cover 28
+    400044: book_cover 29
+    400046: book_cover 3
+    400048: book_cover 30
+    400050: book_cover 31
+    400052: book_cover 32
+    400054: book_cover 33
+    400056: book_cover 34
+    400058: book_cover 35
+    400060: book_cover 36
+    400062: book_cover 37
+    400064: book_cover 38
+    400066: book_cover 39
+    400068: book_cover 4
+    400070: book_cover 40
+    400072: book_cover 41
+    400074: book_cover 42
+    400076: book_cover 43
+    400078: book_cover 44
+    400080: book_cover 45
+    400082: book_cover 46
+    400084: book_cover 47
+    400086: book_cover 48
+    400088: book_cover 49
+    400090: book_cover 5
+    400092: book_cover 50
+    400094: book_cover 51
+    400096: book_cover 52
+    400098: book_cover 53
+    400100: book_cover 54
+    400102: book_cover 55
+    400104: book_cover 56
+    400106: book_cover 57
+    400108: book_cover 58
+    400110: book_cover 59
+    400112: book_cover 6
+    400114: book_cover 60
+    400116: book_cover 61
+    400118: book_cover 62
+    400120: book_cover 63
+    400122: book_cover 64
+    400124: book_cover 65
+    400126: book_cover 66
+    400128: book_cover 67
+    400130: book_cover 68
+    400132: book_cover 69
+    400134: book_cover 7
+    400136: book_cover 70
+    400138: book_cover 71
+    400140: book_cover 72
+    400142: book_cover 73
+    400144: book_cover 74
+    400146: book_cover 75
+    400148: book_cover 76
+    400150: book_cover 77
+    400152: book_cover 78
+    400154: book_cover 79
+    400156: book_cover 8
+    400158: book_cover 80
+    400160: book_cover 9
+    400162: book_group1
+    400164: book_group1 1
+    400166: book_group10
+    400168: book_group10 1
+    400170: book_group11
+    400172: book_group11 1
+    400174: book_group12
+    400176: book_group12 1
+    400178: book_group13
+    400180: book_group13 1
+    400182: book_group14
+    400184: book_group14 1
+    400186: book_group15
+    400188: book_group15 1
+    400190: book_group16
+    400192: book_group16 1
+    400194: book_group17
+    400196: book_group18
+    400198: book_group19
+    400200: book_group2
+    400202: book_group2 1
+    400204: book_group20
+    400206: book_group21
+    400208: book_group22
+    400210: book_group23
+    400212: book_group24
+    400214: book_group25
+    400216: book_group26
+    400218: book_group27
+    400220: book_group28
+    400222: book_group29
+    400224: book_group3
+    400226: book_group3 1
+    400228: book_group30
+    400230: book_group31
+    400232: book_group32
+    400234: book_group33
+    400236: book_group34
+    400238: book_group35
+    400240: book_group36
+    400242: book_group37
+    400244: book_group38
+    400246: book_group39
+    400248: book_group4
+    400250: book_group4 1
+    400252: book_group40
+    400254: book_group41
+    400256: book_group42
+    400258: book_group43
+    400260: book_group44
+    400262: book_group45
+    400264: book_group46
+    400266: book_group47
+    400268: book_group48
+    400270: book_group49
+    400272: book_group5
+    400274: book_group5 1
+    400276: book_group50
+    400278: book_group51
+    400280: book_group52
+    400282: book_group53
+    400284: book_group54
+    400286: book_group55
+    400288: book_group56
+    400290: book_group57
+    400292: book_group58
+    400294: book_group59
+    400296: book_group6
+    400298: book_group6 1
+    400300: book_group60
+    400302: book_group61
+    400304: book_group62
+    400306: book_group63
+    400308: book_group64
+    400310: book_group65
+    400312: book_group7
+    400314: book_group7 1
+    400316: book_group8
+    400318: book_group8 1
+    400320: book_group9
+    400322: book_group9 1
+    400324: book_pages
+    400326: book_pages 1
+    400328: book_pages 10
+    400330: book_pages 11
+    400332: book_pages 12
+    400334: book_pages 13
+    400336: book_pages 14
+    400338: book_pages 15
+    400340: book_pages 16
+    400342: book_pages 17
+    400344: book_pages 18
+    400346: book_pages 19
+    400348: book_pages 2
+    400350: book_pages 20
+    400352: book_pages 21
+    400354: book_pages 22
+    400356: book_pages 23
+    400358: book_pages 24
+    400360: book_pages 25
+    400362: book_pages 26
+    400364: book_pages 27
+    400366: book_pages 28
+    400368: book_pages 29
+    400370: book_pages 3
+    400372: book_pages 30
+    400374: book_pages 31
+    400376: book_pages 32
+    400378: book_pages 33
+    400380: book_pages 34
+    400382: book_pages 35
+    400384: book_pages 36
+    400386: book_pages 37
+    400388: book_pages 38
+    400390: book_pages 39
+    400392: book_pages 4
+    400394: book_pages 40
+    400396: book_pages 41
+    400398: book_pages 42
+    400400: book_pages 43
+    400402: book_pages 44
+    400404: book_pages 45
+    400406: book_pages 46
+    400408: book_pages 47
+    400410: book_pages 48
+    400412: book_pages 49
+    400414: book_pages 5
+    400416: book_pages 50
+    400418: book_pages 51
+    400420: book_pages 52
+    400422: book_pages 53
+    400424: book_pages 54
+    400426: book_pages 55
+    400428: book_pages 56
+    400430: book_pages 57
+    400432: book_pages 58
+    400434: book_pages 59
+    400436: book_pages 6
+    400438: book_pages 60
+    400440: book_pages 61
+    400442: book_pages 62
+    400444: book_pages 63
+    400446: book_pages 64
+    400448: book_pages 65
+    400450: book_pages 66
+    400452: book_pages 67
+    400454: book_pages 68
+    400456: book_pages 69
+    400458: book_pages 7
+    400460: book_pages 70
+    400462: book_pages 71
+    400464: book_pages 72
+    400466: book_pages 73
+    400468: book_pages 74
+    400470: book_pages 75
+    400472: book_pages 76
+    400474: book_pages 77
+    400476: book_pages 78
+    400478: book_pages 79
+    400480: book_pages 8
+    400482: book_pages 80
+    400484: book_pages 9
+    400486: books1
+    400488: books2
+    400490: books3
+    400492: books4
+    400494: books5
+    400496: books6
+    400498: books7
+    400500: books8
+    400502: bookshelf
+    400504: //RootNode
+    2300000: book_cover
+    2300002: book_cover 1
+    2300004: book_cover 10
+    2300006: book_cover 11
+    2300008: book_cover 12
+    2300010: book_cover 13
+    2300012: book_cover 14
+    2300014: book_cover 15
+    2300016: book_cover 16
+    2300018: book_cover 17
+    2300020: book_cover 18
+    2300022: book_cover 19
+    2300024: book_cover 2
+    2300026: book_cover 20
+    2300028: book_cover 21
+    2300030: book_cover 22
+    2300032: book_cover 23
+    2300034: book_cover 24
+    2300036: book_cover 25
+    2300038: book_cover 26
+    2300040: book_cover 27
+    2300042: book_cover 28
+    2300044: book_cover 29
+    2300046: book_cover 3
+    2300048: book_cover 30
+    2300050: book_cover 31
+    2300052: book_cover 32
+    2300054: book_cover 33
+    2300056: book_cover 34
+    2300058: book_cover 35
+    2300060: book_cover 36
+    2300062: book_cover 37
+    2300064: book_cover 38
+    2300066: book_cover 39
+    2300068: book_cover 4
+    2300070: book_cover 40
+    2300072: book_cover 41
+    2300074: book_cover 42
+    2300076: book_cover 43
+    2300078: book_cover 44
+    2300080: book_cover 45
+    2300082: book_cover 46
+    2300084: book_cover 47
+    2300086: book_cover 48
+    2300088: book_cover 49
+    2300090: book_cover 5
+    2300092: book_cover 50
+    2300094: book_cover 51
+    2300096: book_cover 52
+    2300098: book_cover 53
+    2300100: book_cover 54
+    2300102: book_cover 55
+    2300104: book_cover 56
+    2300106: book_cover 57
+    2300108: book_cover 58
+    2300110: book_cover 59
+    2300112: book_cover 6
+    2300114: book_cover 60
+    2300116: book_cover 61
+    2300118: book_cover 62
+    2300120: book_cover 63
+    2300122: book_cover 64
+    2300124: book_cover 65
+    2300126: book_cover 66
+    2300128: book_cover 67
+    2300130: book_cover 68
+    2300132: book_cover 69
+    2300134: book_cover 7
+    2300136: book_cover 70
+    2300138: book_cover 71
+    2300140: book_cover 72
+    2300142: book_cover 73
+    2300144: book_cover 74
+    2300146: book_cover 75
+    2300148: book_cover 76
+    2300150: book_cover 77
+    2300152: book_cover 78
+    2300154: book_cover 79
+    2300156: book_cover 8
+    2300158: book_cover 80
+    2300160: book_cover 9
+    2300162: book_pages
+    2300164: book_pages 1
+    2300166: book_pages 10
+    2300168: book_pages 11
+    2300170: book_pages 12
+    2300172: book_pages 13
+    2300174: book_pages 14
+    2300176: book_pages 15
+    2300178: book_pages 16
+    2300180: book_pages 17
+    2300182: book_pages 18
+    2300184: book_pages 19
+    2300186: book_pages 2
+    2300188: book_pages 20
+    2300190: book_pages 21
+    2300192: book_pages 22
+    2300194: book_pages 23
+    2300196: book_pages 24
+    2300198: book_pages 25
+    2300200: book_pages 26
+    2300202: book_pages 27
+    2300204: book_pages 28
+    2300206: book_pages 29
+    2300208: book_pages 3
+    2300210: book_pages 30
+    2300212: book_pages 31
+    2300214: book_pages 32
+    2300216: book_pages 33
+    2300218: book_pages 34
+    2300220: book_pages 35
+    2300222: book_pages 36
+    2300224: book_pages 37
+    2300226: book_pages 38
+    2300228: book_pages 39
+    2300230: book_pages 4
+    2300232: book_pages 40
+    2300234: book_pages 41
+    2300236: book_pages 42
+    2300238: book_pages 43
+    2300240: book_pages 44
+    2300242: book_pages 45
+    2300244: book_pages 46
+    2300246: book_pages 47
+    2300248: book_pages 48
+    2300250: book_pages 49
+    2300252: book_pages 5
+    2300254: book_pages 50
+    2300256: book_pages 51
+    2300258: book_pages 52
+    2300260: book_pages 53
+    2300262: book_pages 54
+    2300264: book_pages 55
+    2300266: book_pages 56
+    2300268: book_pages 57
+    2300270: book_pages 58
+    2300272: book_pages 59
+    2300274: book_pages 6
+    2300276: book_pages 60
+    2300278: book_pages 61
+    2300280: book_pages 62
+    2300282: book_pages 63
+    2300284: book_pages 64
+    2300286: book_pages 65
+    2300288: book_pages 66
+    2300290: book_pages 67
+    2300292: book_pages 68
+    2300294: book_pages 69
+    2300296: book_pages 7
+    2300298: book_pages 70
+    2300300: book_pages 71
+    2300302: book_pages 72
+    2300304: book_pages 73
+    2300306: book_pages 74
+    2300308: book_pages 75
+    2300310: book_pages 76
+    2300312: book_pages 77
+    2300314: book_pages 78
+    2300316: book_pages 79
+    2300318: book_pages 8
+    2300320: book_pages 80
+    2300322: book_pages 9
+    2300324: bookshelf
+    3300000: book_cover
+    3300002: book_cover 1
+    3300004: book_cover 10
+    3300006: book_cover 11
+    3300008: book_cover 12
+    3300010: book_cover 13
+    3300012: book_cover 14
+    3300014: book_cover 15
+    3300016: book_cover 16
+    3300018: book_cover 17
+    3300020: book_cover 18
+    3300022: book_cover 19
+    3300024: book_cover 2
+    3300026: book_cover 20
+    3300028: book_cover 21
+    3300030: book_cover 22
+    3300032: book_cover 23
+    3300034: book_cover 24
+    3300036: book_cover 25
+    3300038: book_cover 26
+    3300040: book_cover 27
+    3300042: book_cover 28
+    3300044: book_cover 29
+    3300046: book_cover 3
+    3300048: book_cover 30
+    3300050: book_cover 31
+    3300052: book_cover 32
+    3300054: book_cover 33
+    3300056: book_cover 34
+    3300058: book_cover 35
+    3300060: book_cover 36
+    3300062: book_cover 37
+    3300064: book_cover 38
+    3300066: book_cover 39
+    3300068: book_cover 4
+    3300070: book_cover 40
+    3300072: book_cover 41
+    3300074: book_cover 42
+    3300076: book_cover 43
+    3300078: book_cover 44
+    3300080: book_cover 45
+    3300082: book_cover 46
+    3300084: book_cover 47
+    3300086: book_cover 48
+    3300088: book_cover 49
+    3300090: book_cover 5
+    3300092: book_cover 50
+    3300094: book_cover 51
+    3300096: book_cover 52
+    3300098: book_cover 53
+    3300100: book_cover 54
+    3300102: book_cover 55
+    3300104: book_cover 56
+    3300106: book_cover 57
+    3300108: book_cover 58
+    3300110: book_cover 59
+    3300112: book_cover 6
+    3300114: book_cover 60
+    3300116: book_cover 61
+    3300118: book_cover 62
+    3300120: book_cover 63
+    3300122: book_cover 64
+    3300124: book_cover 65
+    3300126: book_cover 66
+    3300128: book_cover 67
+    3300130: book_cover 68
+    3300132: book_cover 69
+    3300134: book_cover 7
+    3300136: book_cover 70
+    3300138: book_cover 71
+    3300140: book_cover 72
+    3300142: book_cover 73
+    3300144: book_cover 74
+    3300146: book_cover 75
+    3300148: book_cover 76
+    3300150: book_cover 77
+    3300152: book_cover 78
+    3300154: book_cover 79
+    3300156: book_cover 8
+    3300158: book_cover 80
+    3300160: book_cover 9
+    3300162: book_pages
+    3300164: book_pages 1
+    3300166: book_pages 10
+    3300168: book_pages 11
+    3300170: book_pages 12
+    3300172: book_pages 13
+    3300174: book_pages 14
+    3300176: book_pages 15
+    3300178: book_pages 16
+    3300180: book_pages 17
+    3300182: book_pages 18
+    3300184: book_pages 19
+    3300186: book_pages 2
+    3300188: book_pages 20
+    3300190: book_pages 21
+    3300192: book_pages 22
+    3300194: book_pages 23
+    3300196: book_pages 24
+    3300198: book_pages 25
+    3300200: book_pages 26
+    3300202: book_pages 27
+    3300204: book_pages 28
+    3300206: book_pages 29
+    3300208: book_pages 3
+    3300210: book_pages 30
+    3300212: book_pages 31
+    3300214: book_pages 32
+    3300216: book_pages 33
+    3300218: book_pages 34
+    3300220: book_pages 35
+    3300222: book_pages 36
+    3300224: book_pages 37
+    3300226: book_pages 38
+    3300228: book_pages 39
+    3300230: book_pages 4
+    3300232: book_pages 40
+    3300234: book_pages 41
+    3300236: book_pages 42
+    3300238: book_pages 43
+    3300240: book_pages 44
+    3300242: book_pages 45
+    3300244: book_pages 46
+    3300246: book_pages 47
+    3300248: book_pages 48
+    3300250: book_pages 49
+    3300252: book_pages 5
+    3300254: book_pages 50
+    3300256: book_pages 51
+    3300258: book_pages 52
+    3300260: book_pages 53
+    3300262: book_pages 54
+    3300264: book_pages 55
+    3300266: book_pages 56
+    3300268: book_pages 57
+    3300270: book_pages 58
+    3300272: book_pages 59
+    3300274: book_pages 6
+    3300276: book_pages 60
+    3300278: book_pages 61
+    3300280: book_pages 62
+    3300282: book_pages 63
+    3300284: book_pages 64
+    3300286: book_pages 65
+    3300288: book_pages 66
+    3300290: book_pages 67
+    3300292: book_pages 68
+    3300294: book_pages 69
+    3300296: book_pages 7
+    3300298: book_pages 70
+    3300300: book_pages 71
+    3300302: book_pages 72
+    3300304: book_pages 73
+    3300306: book_pages 74
+    3300308: book_pages 75
+    3300310: book_pages 76
+    3300312: book_pages 77
+    3300314: book_pages 78
+    3300316: book_pages 79
+    3300318: book_pages 8
+    3300320: book_pages 80
+    3300322: book_pages 9
+    3300324: bookshelf
+    4300000: book_pages
+    4300002: book_cover
+    4300004: book_pages
+    4300006: book_cover
+    4300008: book_pages
+    4300010: book_cover
+    4300012: book_pages
+    4300014: book_cover
+    4300016: book_pages
+    4300018: book_cover
+    4300020: book_pages
+    4300022: book_cover
+    4300024: book_pages
+    4300026: book_cover
+    4300028: book_pages
+    4300030: book_cover
+    4300032: book_pages
+    4300034: book_cover
+    4300036: book_pages
+    4300038: book_cover
+    4300040: book_pages
+    4300042: book_cover
+    4300044: book_pages
+    4300046: book_cover
+    4300048: book_pages
+    4300050: book_cover
+    4300052: book_pages
+    4300054: book_cover
+    4300056: book_pages
+    4300058: book_cover
+    4300060: book_pages
+    4300062: book_cover
+    4300064: book_pages
+    4300066: book_cover
+    4300068: book_pages
+    4300070: book_cover
+    4300072: book_pages
+    4300074: book_cover
+    4300076: book_pages
+    4300078: book_cover
+    4300080: book_pages
+    4300082: book_cover
+    4300084: book_pages
+    4300086: book_cover
+    4300088: book_pages
+    4300090: book_cover
+    4300092: book_pages
+    4300094: book_cover
+    4300096: book_pages
+    4300098: book_cover
+    4300100: book_pages
+    4300102: book_cover
+    4300104: book_pages
+    4300106: book_cover
+    4300108: book_pages
+    4300110: book_cover
+    4300112: book_pages
+    4300114: book_cover
+    4300116: book_pages
+    4300118: book_cover
+    4300120: book_pages
+    4300122: book_cover
+    4300124: book_pages
+    4300126: book_cover
+    4300128: book_pages
+    4300130: book_cover
+    4300132: book_pages
+    4300134: book_cover
+    4300136: book_pages
+    4300138: book_cover
+    4300140: book_pages
+    4300142: book_cover
+    4300144: book_pages
+    4300146: book_cover
+    4300148: book_pages
+    4300150: book_cover
+    4300152: book_pages
+    4300154: book_cover
+    4300156: book_pages
+    4300158: book_cover
+    4300160: book_pages
+    4300162: book_cover
+    4300164: book_pages
+    4300166: book_cover
+    4300168: book_pages
+    4300170: book_cover
+    4300172: book_pages
+    4300174: book_cover
+    4300176: book_pages
+    4300178: book_cover
+    4300180: book_pages
+    4300182: book_cover
+    4300184: book_pages
+    4300186: book_cover
+    4300188: book_pages
+    4300190: book_cover
+    4300192: book_pages
+    4300194: book_cover
+    4300196: book_pages
+    4300198: book_cover
+    4300200: book_pages
+    4300202: book_cover
+    4300204: book_pages
+    4300206: book_cover
+    4300208: book_pages
+    4300210: book_cover
+    4300212: book_pages
+    4300214: book_cover
+    4300216: book_pages
+    4300218: book_cover
+    4300220: book_pages
+    4300222: book_cover
+    4300224: book_pages
+    4300226: book_cover
+    4300228: book_pages
+    4300230: book_cover
+    4300232: book_pages
+    4300234: book_cover
+    4300236: book_pages
+    4300238: book_cover
+    4300240: book_pages
+    4300242: book_cover
+    4300244: book_pages
+    4300246: book_cover
+    4300248: book_pages
+    4300250: book_cover
+    4300252: book_pages
+    4300254: book_cover
+    4300256: book_pages
+    4300258: book_cover
+    4300260: book_pages
+    4300262: book_cover
+    4300264: book_pages
+    4300266: book_cover
+    4300268: book_pages
+    4300270: book_cover
+    4300272: book_pages
+    4300274: book_cover
+    4300276: book_pages
+    4300278: book_cover
+    4300280: book_pages
+    4300282: book_cover
+    4300284: book_pages
+    4300286: book_cover
+    4300288: book_pages
+    4300290: book_cover
+    4300292: book_pages
+    4300294: book_cover
+    4300296: book_pages
+    4300298: book_cover
+    4300300: book_pages
+    4300302: book_cover
+    4300304: book_pages
+    4300306: book_cover
+    4300308: book_pages
+    4300310: book_cover
+    4300312: book_pages
+    4300314: book_cover
+    4300316: book_pages
+    4300318: book_cover
+    4300320: book_pages
+    4300322: book_cover
+    4300324: bookshelf
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
