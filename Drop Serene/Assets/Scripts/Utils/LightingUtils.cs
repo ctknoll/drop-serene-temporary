@@ -15,7 +15,18 @@ public class LightingUtils
 		return true;
     }
 
-	public static bool objectInLight (GameObject obj, Light light)
+    public static bool inLineOfSight(Vector3 obj, GameObject target)
+    {
+        RaycastHit hit;
+        if (Physics.Linecast(obj, target.transform.position, out hit))
+        {
+            if (hit.collider.name.Equals(target.name)) return true;
+            else return false;
+        }
+        return true;
+    }
+
+    public static bool objectInLight (GameObject obj, Light light)
 	{
 		//Ambient Light Test
 		if(light.GetComponent<AmbientLight>())
