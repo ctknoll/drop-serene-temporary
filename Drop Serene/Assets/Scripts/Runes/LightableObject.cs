@@ -6,11 +6,13 @@ public abstract class LightableObject : MonoBehaviour
     public bool isLit = false;
     public bool isActive = false;
 	public bool isLinkedActive = false;
+    public float secondsToActivate = 1F;
 
     [HideInInspector]
     public Material runeMaterial;
 	public Color currentColor;
     public float currentIntensity = 0F;
+    public float activationCounter = 0F;
     
     public abstract void OnActivate();
     public abstract void OnDeactivate();

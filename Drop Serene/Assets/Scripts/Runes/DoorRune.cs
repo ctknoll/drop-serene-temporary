@@ -100,6 +100,21 @@ public class DoorRune : LightableObject
 
 
         }
+
+        if (!isActive && isLit)
+        {
+            activationCounter += Time.deltaTime;
+            Debug.Log(activationCounter);
+            currentColor = Color.Lerp(deactivatedColor, runeLit, secondsToActivate);
+            
+            Debug.Log(currentColor);
+            if (activationCounter >= secondsToActivate)
+            {
+                isActive = true;
+                OnActivate();
+            }
+        }
+
         if (!isActive)
         {
             currentColor = deactivatedColor;
@@ -137,13 +152,12 @@ public class DoorRune : LightableObject
 			{
 				gameObject.GetComponent<LinkedRune> ().checkMutuallyExclusive();
 			}				
-		}
-        currentColor = runeLit;
-        currentIntensity = lightOnIntensity;
-
-        if (!isActive)
+		}        
+        
+        if(isActive)
         {
-            OnActivate();
+            currentColor = runeLit;
+            currentIntensity = lightOnIntensity;
         }
     }
 
