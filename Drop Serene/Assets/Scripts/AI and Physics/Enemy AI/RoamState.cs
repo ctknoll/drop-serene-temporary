@@ -30,10 +30,14 @@ public class RoamState : State
 	override public void OnStateUpdate()
 	{
         Debug.DrawLine(goalPos, controller.gameObject.transform.position, Color.red);
-        if (Vector3.Magnitude(controller.agent.transform.position - goalPos) < 2F)
+        if (Vector3.Magnitude(controller.agent.transform.position - goalPos) < 1.5F)
         {
             Vector3 tmpGoal = goalPos;
             goalPos = localSearch(controller.gameObject.transform.position, 10, 100);
+            while(goalPos.Equals(new Vector3(Mathf.Infinity, Mathf.Infinity, Mathf.Infinity)))
+            {
+                goalPos = localSearch(controller.gameObject.transform.position, 10, 100);
+            }
             lastGoal = tmpGoal;
             Debug.Log("New Goal Position: " + goalPos);
             controller.agent.destination = goalPos;
@@ -70,10 +74,11 @@ public class RoamState : State
         }
         if (pointsList.Count == 0)
             return localSearch(pos, radius, casts);
-        pointsList.Sort((x, y) => (int)(x.w - y.w));
+        pointsList.Sort((x, y) => (int)(10000 * x.w - 10000* y.w));
         pointsList.Reverse();
+        Debug.Log(pointsList[0].w + " " + pointsList[1].w);
         Vector3 newPoint = new Vector3(pointsList[0].x, pointsList[0].y, pointsList[0].z);
-        if (radius > 1 || casts >= 4)
+        if (radius > 1 || casts >= 8)
             return localSearch(newPoint, radius / 4, (int)(casts / 4));
         NavMeshHit hit2;
         NavMesh.SamplePosition(newPoint, out hit2, 5, NavMesh.AllAreas);
@@ -102,11 +107,20 @@ public class RoamState : State
             float dist = Vector3.Magnitude(point - c.ClosestPointOnBounds(point));
             if(dist < minDistanceToWall) minDistanceToWall = dist;
         }
-        return totalDistance * angleVal * minDistanceToWall - 2 * yDiff;
+        double value = (totalDistance * angleVal * minDistanceToWall / 10);
+        double yMitigator = 4 * SigDer(yDiff - 4);
+        if (UnityEngine.Random.Range(0, 100) > 95)
+            Debug.Log("Value: " + value + ", Mitigator: " + yMitigator);
+        return value - yMitigator;
     }
 
     public double Sigmoid(double x)
     {
         return 1 / (1 + Math.Exp(-x));
+    }
+
+    public double SigDer(double x)
+    {
+        return Sigmoid(x) * (1 - Sigmoid(x));
     }
 }

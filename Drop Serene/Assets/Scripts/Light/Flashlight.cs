@@ -14,13 +14,13 @@ public class Flashlight : MonoBehaviour
     public LerpControlledBob lightBob;
     public Collider lightCollider;
     List<Collider> litObjects;
-
+    public GameObject flashlightItem;
     public GameObject player;
     GameObject rune;
 
 	// Use this for initialization
 	void Start () {
-        transform.position += Vector3.ClampMagnitude(GetComponentInParent<Transform>().forward, 1);
+        
         lightStatus = false;
         lightCollider = GetComponent<Collider>();
         lightCollider.enabled = false;
@@ -30,11 +30,15 @@ public class Flashlight : MonoBehaviour
         gameStateUtilities = GameObject.Find("__MASTER__").GetComponent<GamestateUtilities>();
         player = GameObject.Find("Player");
         rune = GameObject.Find("Directional Rune (1)");
+        flashlightItem = GameObject.Find("Flashlight Mesh");
     }
 	
 	// Update is called once per frame
 	void Update ()
     {
+        //Vector3 lookDirection = flashlightItem.transform.position - (player.transform.position + player.transform.forward * 5);
+        //Quaternion rotation = Quaternion.LookRotation(lookDirection);
+        //flashlightItem.transform.rotation = rotation;
         if (!lightStatus)
         {
             lt.intensity = 0;
