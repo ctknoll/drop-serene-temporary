@@ -17,10 +17,12 @@ public class Flashlight : MonoBehaviour
     public GameObject flashlightItem;
     public GameObject player;
     GameObject rune;
+	AudioSource sound;
 
 	// Use this for initialization
 	void Start () {
-        
+		sound = GetComponent<AudioSource> ();
+
         lightStatus = false;
         lightCollider = GetComponent<Collider>();
         lightCollider.enabled = false;
@@ -59,6 +61,7 @@ public class Flashlight : MonoBehaviour
             }
             lightStatus = !lightStatus;
             lightCollider.enabled = lightStatus;
+			sound.Play ();
         }
     }
 
