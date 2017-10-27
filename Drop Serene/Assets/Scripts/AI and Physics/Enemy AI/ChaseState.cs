@@ -5,7 +5,7 @@ public class ChaseState : State
 {    
     Flashlight light;
     
-    float originalSpeed;    
+    float originalSpeed;
 
     override public void OnStateEnter()
     {        
@@ -14,6 +14,8 @@ public class ChaseState : State
         controller.agent.SetDestination(controller.player.transform.position);
         originalSpeed = controller.agent.speed;
         controller.agent.speed = controller.player.GetComponent<PlayerMovement>().movementSpeed * controller.player.GetComponent<PlayerMovement>().sprintMultiplier + 0.5f;
+        controller.audioSource.clip = controller.enterChaseClip;
+        controller.audioSource.Play();
     }
 
     override public void OnStateUpdate()
@@ -26,6 +28,8 @@ public class ChaseState : State
         controller.agent.speed = originalSpeed;
         Debug.Log("Exit chase state");
 		controller.alertLocation = controller.player.transform.position;
+        controller.audioSource.clip = controller.exitChaseClip;
+        controller.audioSource.Play();
     }
 
     public override void EvaluateTransition()

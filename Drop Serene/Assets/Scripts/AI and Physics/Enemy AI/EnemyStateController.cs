@@ -20,9 +20,12 @@ public class EnemyStateController : MonoBehaviour
 
     public readonly Vector3 vec3Null = new Vector3(Mathf.Infinity, Mathf.Infinity, Mathf.Infinity);
     public Vector3 alertLocation;
-	public GameObject foundPlayer;
+    public AudioClip footstepClip;
+    public AudioClip enterChaseClip;
+    public AudioClip exitChaseClip;
 
-	AudioSource audioSource;
+    [HideInInspector]
+    public AudioSource audioSource;
 	
 	public GameObject player;
 
@@ -59,7 +62,6 @@ public class EnemyStateController : MonoBehaviour
             currentState.OnStateEnter();
             expectedState = currentState;
             alertLocation = vec3Null;
-			foundPlayer = null;
         }
 
 		Debug.Log ("Monster Line of sight " + LightingUtils.inLineOfSight (gameObject, player.gameObject));
@@ -70,6 +72,7 @@ public class EnemyStateController : MonoBehaviour
 	// Play monster's footsteps, 2 speeds
 	IEnumerator MonsterStep(){
 		while (true) {
+            audioSource.clip = footstepClip;
 			audioSource.Play ();
 			if (currentState == roamState || currentState == investigateState){
 				yield return new WaitForSeconds (0.75f);
