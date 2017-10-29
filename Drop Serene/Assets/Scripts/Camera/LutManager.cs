@@ -26,7 +26,7 @@ public class LutManager : MonoBehaviour {
         
 
         var vignettesettings = newProfile.vignette.settings;
-        vignettesettings.intensity = Mathf.Min(0.5f, 0.5f*Mathf.Max(0, 1 - playerMovement.stamina));
+        vignettesettings.intensity = 0.5f * Mathf.Max(0, 1 - playerMovement.stamina);
         newProfile.vignette.settings = vignettesettings;
 
         postProcess.profile = newProfile;

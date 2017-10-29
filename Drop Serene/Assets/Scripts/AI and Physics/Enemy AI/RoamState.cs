@@ -57,8 +57,8 @@ public class RoamState : State
         //enter chase if in line of sight and in light, EVER
         if (LightingUtils.inLineOfSight(controller.gameObject, controller.player.gameObject) && light.lightStatus) controller.currentState = controller.chaseState;
 
-		if (LightingUtils.inLineOfSight (controller.gameObject, controller.player.gameObject) && Vector3.Distance (controller.transform.position, controller.player.transform.position) < 4F)
-			controller.currentState = controller.chaseState;
+		//if (LightingUtils.inLineOfSight (controller.gameObject, controller.player.gameObject) && Vector3.Distance (controller.transform.position, controller.player.transform.position) < 4F)
+		//	controller.currentState = controller.chaseState;
     }
 
     public Vector3 localSearch(Vector3 pos, int radius, int casts)

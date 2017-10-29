@@ -35,8 +35,8 @@ public class InvestigateState : State
         if ((location - controller.agent.transform.position).magnitude < 1) controller.currentState = controller.roamState;
 		
 		//chase state with los && proximity or los && light
-		if (LightingUtils.inLineOfSight (controller.gameObject, controller.player.gameObject) && Vector3.Distance (controller.transform.position, controller.player.transform.position) < 4F)
-			controller.currentState = controller.chaseState;
+		//if (LightingUtils.inLineOfSight (controller.gameObject, controller.player.gameObject) && Vector3.Distance (controller.transform.position, controller.player.transform.position) < 4F)
+		//	controller.currentState = controller.chaseState;
     }
 
 }
