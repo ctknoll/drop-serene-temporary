@@ -6,28 +6,35 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class EnemyStateController : MonoBehaviour 
 {
-	
-    public Transform[] roamGoalNodes;
-
     public State currentState;
     State expectedState;
+    public AudioClip footstepClip;
+    public GameObject player;
+    public List<Vector3> history = new List<Vector3>();
+
+    [Header("Roam State")]
+    public Transform[] roamGoalNodes;
+
+    [Header("Chase State")]
+    public AudioClip enterChaseClip;
+    public AudioClip exitChaseClip;
+    public float chaseSpeed = 4.5f;
+
+    [Header("Investigate State")]
+    public Vector3 alertLocation;
 
     [HideInInspector]
     public NavMeshAgent agent;
+    [HideInInspector]
     public RoamState roamState;
+    [HideInInspector]
     public InvestigateState investigateState;
+    [HideInInspector]
     public ChaseState chaseState;
-
+    [HideInInspector]
     public readonly Vector3 vec3Null = new Vector3(Mathf.Infinity, Mathf.Infinity, Mathf.Infinity);
-    public Vector3 alertLocation;
-    public AudioClip footstepClip;
-    public AudioClip enterChaseClip;
-    public AudioClip exitChaseClip;
-
     [HideInInspector]
     public AudioSource audioSource;
-	
-	public GameObject player;
 
     // Use this for initialization
     void Start () 
@@ -63,8 +70,12 @@ public class EnemyStateController : MonoBehaviour
             expectedState = currentState;
             alertLocation = vec3Null;
         }
+        while (history.Count > 100)
+            history.RemoveAt(0);
+        if (!GamestateUtilities.isPaused)
+           history.Add(gameObject.transform.position);
 
-		Debug.Log ("Monster Line of sight " + LightingUtils.inLineOfSight (gameObject, player.gameObject));
+        Debug.Log ("Monster Line of sight " + LightingUtils.inLineOfSight (gameObject, player.gameObject));
 	}
 
     public void heardNoise(Vector3 location) {alertLocation = location;}

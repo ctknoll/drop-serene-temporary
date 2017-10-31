@@ -33,10 +33,11 @@ public class InvestigateState : State
     {
         //If he's at the location of the last noise... OR location is unreachable
         if ((location - controller.agent.transform.position).magnitude < 1) controller.currentState = controller.roamState;
-		
-		//chase state with los && proximity or los && light
-		//if (LightingUtils.inLineOfSight (controller.gameObject, controller.player.gameObject) && Vector3.Distance (controller.transform.position, controller.player.transform.position) < 4F)
-		//	controller.currentState = controller.chaseState;
+        if (controller.history.Count > 4 && controller.history[controller.history.Count - 1] == controller.history[controller.history.Count - 4] &&
+                controller.history[controller.history.Count - 4] == controller.history[controller.history.Count - 16]) controller.currentState = controller.roamState;
+            //chase state with los && proximity or los && light
+            //if (LightingUtils.inLineOfSight (controller.gameObject, controller.player.gameObject) && Vector3.Distance (controller.transform.position, controller.player.transform.position) < 4F)
+            //	controller.currentState = controller.chaseState;
     }
 
 }

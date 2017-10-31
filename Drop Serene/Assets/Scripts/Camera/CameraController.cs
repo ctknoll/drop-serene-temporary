@@ -32,7 +32,7 @@ public class CameraController : MonoBehaviour
 
         float xRaw = Input.GetAxis("Mouse X");
         float yRaw = Input.GetAxis("Mouse Y");
-        if (GameObject.Find("__MASTER__").GetComponent<GamestateUtilities>().isPaused)
+        if (GamestateUtilities.isPaused)
         {
             Cursor.lockState = CursorLockMode.None;
             xRaw = 0; yRaw = 0;

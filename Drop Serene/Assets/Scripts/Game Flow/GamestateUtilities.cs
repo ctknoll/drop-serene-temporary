@@ -6,7 +6,7 @@ public class GamestateUtilities : MonoBehaviour {
 
     SetStartOptions startOptions;
     CanvasGroup pauseMenu = null;
-    public bool isPaused;
+    public static bool isPaused;
 
     public static readonly string[] notInGame = {"Start", "Settings", "Won", "Dead"};
 

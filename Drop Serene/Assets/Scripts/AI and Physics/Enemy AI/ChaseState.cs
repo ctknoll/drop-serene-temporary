@@ -13,7 +13,7 @@ public class ChaseState : State
         light = controller.player.gameObject.GetComponentInChildren<Flashlight>();
         controller.agent.SetDestination(controller.player.transform.position);
         originalSpeed = controller.agent.speed;
-        controller.agent.speed = controller.player.GetComponent<PlayerMovement>().movementSpeed * controller.player.GetComponent<PlayerMovement>().sprintMultiplier + 0.5f;
+        controller.agent.speed = controller.chaseSpeed;
         controller.audioSource.clip = controller.enterChaseClip;
         controller.audioSource.Play();
     }

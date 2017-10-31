@@ -10,8 +10,11 @@ public class RoamState : State
     public Vector3 goalPos;
     public Vector3 lastGoal;
 
+    
+
     override public void OnStateEnter()
-	{        
+	{
+        controller.history.Clear();
         light = controller.player.gameObject.GetComponentInChildren<Flashlight>();
         Debug.Log ("Entered roam state");
 
@@ -30,11 +33,21 @@ public class RoamState : State
 	override public void OnStateUpdate()
 	{
         Debug.DrawLine(goalPos, controller.gameObject.transform.position, Color.red);
+        if (controller.history.Count > 4)
+        {
+            if(controller.history[controller.history.Count - 1] == controller.history[controller.history.Count - 4] &&
+                controller.history[controller.history.Count - 4] == controller.history[controller.history.Count - 16])
+            {
+                goalPos = localSearch(controller.gameObject.transform.position, 10, 100);
+                Debug.Log("New Viable Goal Position: " + goalPos);
+                controller.agent.destination = goalPos;
+            }
+        }
         if (Vector3.Magnitude(controller.agent.transform.position - goalPos) < 1.5F)
         {
             Vector3 tmpGoal = goalPos;
             goalPos = localSearch(controller.gameObject.transform.position, 10, 100);
-            while(goalPos.Equals(new Vector3(Mathf.Infinity, Mathf.Infinity, Mathf.Infinity)))
+            while(goalPos == controller.vec3Null)
             {
                 goalPos = localSearch(controller.gameObject.transform.position, 10, 100);
             }
@@ -109,8 +122,8 @@ public class RoamState : State
         }
         double value = (totalDistance * angleVal * minDistanceToWall / 10);
         double yMitigator = 4 * SigDer(yDiff - 4);
-        if (UnityEngine.Random.Range(0, 100) > 95)
-            Debug.Log("Value: " + value + ", Mitigator: " + yMitigator);
+//        if (UnityEngine.Random.Range(0, 100) > 95)
+//            Debug.Log("Value: " + value + ", Mitigator: " + yMitigator);
         return value - yMitigator;
     }
 
