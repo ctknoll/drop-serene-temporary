@@ -14,8 +14,8 @@ public class ChaseState : State
         controller.agent.SetDestination(controller.player.transform.position);
         originalSpeed = controller.agent.speed;
         controller.agent.speed = controller.chaseSpeed;
-        controller.audioSource.clip = controller.enterChaseClip;
-        controller.audioSource.Play();
+        //controller.audioSource.clip = controller.enterChaseClip;
+        //controller.audioSource.Play();
     }
 
     override public void OnStateUpdate()
@@ -28,8 +28,8 @@ public class ChaseState : State
         controller.agent.speed = originalSpeed;
         Debug.Log("Exit chase state");
 		controller.alertLocation = controller.player.transform.position;
-        controller.audioSource.clip = controller.exitChaseClip;
-        controller.audioSource.Play();
+        //controller.audioSource.clip = controller.exitChaseClip;
+        //controller.audioSource.Play();
     }
 
     public override void EvaluateTransition()

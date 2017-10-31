@@ -34,7 +34,13 @@ public class EnemyStateController : MonoBehaviour
     [HideInInspector]
     public readonly Vector3 vec3Null = new Vector3(Mathf.Infinity, Mathf.Infinity, Mathf.Infinity);
     [HideInInspector]
-    public AudioSource audioSource;
+    public AudioSource audioSource;   
+
+	// Audio dependent variables	
+	AudioSource stateAudio;
+	public AudioClip moanSound;
+	public AudioClip growlSound;
+	float distance;
 
     // Use this for initialization
     void Start () 
@@ -52,7 +58,10 @@ public class EnemyStateController : MonoBehaviour
 
 		player = GameObject.Find("Player");
 		Debug.Log ("Found player? " + player);
+
+		// Audio shenanigans
 		audioSource = GetComponent<AudioSource> ();
+		stateAudio = GameObject.Find ("MonsterVoice").GetComponent<AudioSource>();
 
 		// Start monster's footsteps (Always looping - since the monster should always be moving)
 		StartCoroutine (MonsterStep ());
@@ -61,19 +70,42 @@ public class EnemyStateController : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{	
+		// Play moaning sound when the player gets to a certain distance from the monster
+		distance = Vector3.Distance(player.transform.position, transform.position);
+		if (distance <= 4.0f) {
+			if(!stateAudio.isPlaying) {
+				stateAudio.PlayOneShot (moanSound, 0.2f);
+			}
+		}
+			
 		currentState.OnStateUpdate();
         currentState.EvaluateTransition();
         if(!expectedState.Equals(currentState))
         {
             expectedState.OnStateExit();
             currentState.OnStateEnter();
+
+			// Leaving chase state audio cue
+			if (currentState != chaseState) {
+				if(!stateAudio.isPlaying) {
+					stateAudio.PlayOneShot (moanSound, 0.2f);
+				}
+			}
+			// Entering chase state audio cue
+			if (currentState == chaseState) {
+				if(!stateAudio.isPlaying) {
+					stateAudio.PlayOneShot (growlSound, 1);
+				}
+			}
+
             expectedState = currentState;
             alertLocation = vec3Null;
         }
+
         while (history.Count > 100)
             history.RemoveAt(0);
         if (!GamestateUtilities.isPaused)
-           history.Add(gameObject.transform.position);
+            history.Add(gameObject.transform.position);
 
         Debug.Log ("Monster Line of sight " + LightingUtils.inLineOfSight (gameObject, player.gameObject));
 	}
@@ -83,7 +115,6 @@ public class EnemyStateController : MonoBehaviour
 	// Play monster's footsteps, 2 speeds
 	IEnumerator MonsterStep(){
 		while (true) {
-            audioSource.clip = footstepClip;
 			audioSource.Play ();
 			if (currentState == roamState || currentState == investigateState){
 				yield return new WaitForSeconds (0.75f);
