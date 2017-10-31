@@ -6,9 +6,6 @@ using UnityStandardAssets.Utility;
 public class Flashlight : MonoBehaviour
 {
 	public GameObject lightObject;    
-
-    [HideInInspector]
-    GamestateUtilities gameStateUtilities;
     public bool lightStatus;
     public Light lt;
     public LerpControlledBob lightBob;
@@ -16,7 +13,6 @@ public class Flashlight : MonoBehaviour
     List<Collider> litObjects;
     public GameObject flashlightItem;
     public GameObject player;
-    GameObject rune;
 	AudioSource sound;
 
 	// Use this for initialization
@@ -28,10 +24,8 @@ public class Flashlight : MonoBehaviour
         lightCollider.enabled = false;
         lt = lightObject.GetComponent<Light>();
         lightBob = new LerpControlledBob();
-        litObjects = new List<Collider>();
-        gameStateUtilities = GameObject.Find("__MASTER__").GetComponent<GamestateUtilities>();
+        litObjects = new List<Collider>();        
         player = GameObject.Find("Player");
-        rune = GameObject.Find("Directional Rune (1)");
         flashlightItem = GameObject.Find("Flashlight Mesh");
     }
 	
@@ -49,7 +43,7 @@ public class Flashlight : MonoBehaviour
         {
             lt.intensity = 5;
         }
-        if (Input.GetButtonDown("Fire1"))
+		if (Input.GetButtonDown("Fire1") && !GamestateUtilities.gamePaused())
         {
             List<Collider> tempList = new List<Collider>(litObjects);
             foreach (Collider light in tempList)

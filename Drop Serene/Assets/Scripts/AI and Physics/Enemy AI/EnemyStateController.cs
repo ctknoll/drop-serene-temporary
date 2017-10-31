@@ -86,7 +86,7 @@ public class EnemyStateController : MonoBehaviour
 
         while (history.Count > 100)
             history.RemoveAt(0);
-        if (!GamestateUtilities.isPaused)
+		if (!GamestateUtilities.gamePaused())
             history.Add(gameObject.transform.position);
 
         Debug.Log ("Monster Line of sight " + LightingUtils.inLineOfSight (gameObject, player.gameObject));

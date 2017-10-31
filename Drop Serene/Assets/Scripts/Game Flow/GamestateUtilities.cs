@@ -6,7 +6,7 @@ public class GamestateUtilities : MonoBehaviour {
 
     SetStartOptions startOptions;
     CanvasGroup pauseMenu = null;
-    public static bool isPaused;
+    private static bool isPaused;
 
     public static readonly string[] notInGame = {"Start", "Settings", "Won", "Dead"};
 
@@ -18,8 +18,8 @@ public class GamestateUtilities : MonoBehaviour {
         if (inGame())
         {
             pauseMenu = GameObject.Find("PlayerUI").GetComponentInChildren<CanvasGroup>();            
-            isPaused = true;
-            TogglePauseMenu();
+            isPaused = false;
+			SetPaused (isPaused);
         }        
 	}
 	
@@ -30,23 +30,13 @@ public class GamestateUtilities : MonoBehaviour {
             Cursor.lockState = CursorLockMode.None;
         if (Input.GetButtonDown("Escape") && inGame())
         {            
-            TogglePauseMenu();            
+			SetPaused (!isPaused);
         }
-	}
-
-    public void Pause()
-    {
-        Time.timeScale = 0F;
-    }
-
-    public void Unpause()
-    {
-        Time.timeScale = 1F;
-    }
+	}    
 
     public void Restart()
     {
-        Unpause();
+		SetPaused (false);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
@@ -57,7 +47,7 @@ public class GamestateUtilities : MonoBehaviour {
 
 	public void LoadScene(string sceneName)
 	{
-        Unpause();
+		SetPaused (false);
         SceneManager.LoadScene(sceneName);
 	}
 
@@ -77,24 +67,29 @@ public class GamestateUtilities : MonoBehaviour {
         return false;
     }
 
-    void TogglePauseMenu()
-    {
-        if(pauseMenu)
-        {
-            isPaused = !isPaused;
-            pauseMenu.interactable = isPaused;
+	public void SetPaused(bool pause)
+	{
+		if(pauseMenu)
+		{
+			isPaused = pause;
+			pauseMenu.interactable = isPaused;
 
-            if (isPaused)
-                Pause();
-            else
-                Unpause();
+			if (isPaused)
+				Time.timeScale = 0F;
+			else
+				Time.timeScale = 1F;
 
-            foreach (Transform g in pauseMenu.GetComponentInChildren<Transform>())
-            {
-                g.gameObject.SetActive(isPaused);
-            }            
-        }
-    }
+			foreach (Transform g in pauseMenu.GetComponentInChildren<Transform>())
+			{
+				g.gameObject.SetActive(isPaused);
+			}            
+		}         
+	}
+
+	public static bool gamePaused()
+	{
+		return isPaused;
+	}
 
     public void Exit()
     {
