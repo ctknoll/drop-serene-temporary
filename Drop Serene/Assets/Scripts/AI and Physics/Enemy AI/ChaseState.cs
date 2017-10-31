@@ -3,13 +3,15 @@ using UnityEngine.AI;
 
 public class ChaseState : State
 {    
-    Flashlight light;
-    
+    Flashlight light;    
     float originalSpeed;
 
     override public void OnStateEnter()
     {        
-        Debug.Log("Entered chase state");        
+        Debug.Log("Entered chase state");  
+		if(!controller.stateAudio.isPlaying) {
+			controller.stateAudio.PlayOneShot (controller.growlSound, 1);
+		}
         light = controller.player.gameObject.GetComponentInChildren<Flashlight>();
         controller.agent.SetDestination(controller.player.transform.position);
         originalSpeed = controller.agent.speed;
@@ -23,6 +25,9 @@ public class ChaseState : State
 
     override public void OnStateExit()
     {
+		if(!controller.stateAudio.isPlaying) {
+			controller.stateAudio.PlayOneShot (controller.moanSound, 0.2f);
+		}
         controller.agent.speed = originalSpeed;        
 		controller.alertLocation = controller.player.transform.position;
 		Debug.Log("Exit chase state");

@@ -8,9 +8,7 @@ public class RoamState : State
     public Transform currentGoal;    
     Flashlight light;
     public Vector3 goalPos;
-    public Vector3 lastGoal;
-
-    
+    public Vector3 lastGoal;    
 
     override public void OnStateEnter()
 	{

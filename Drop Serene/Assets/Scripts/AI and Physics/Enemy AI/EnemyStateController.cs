@@ -11,11 +11,6 @@ public class EnemyStateController : MonoBehaviour
     public AudioClip footstepClip;
     public GameObject player;
 	public float distance = 25f;
-	public float proximity = 4f;
-    
-
-    [Header("Roam State")]
-    public Transform[] roamGoalNodes;
 
     [Header("Chase State")]
 	public AudioClip moanSound;
@@ -39,7 +34,7 @@ public class EnemyStateController : MonoBehaviour
     public AudioSource audioSource; 
 	[HideInInspector]
 	public List<Vector3> history = new List<Vector3>();
-	AudioSource stateAudio;
+	public AudioSource stateAudio;
 	[HideInInspector]
 	public float distanceToPlayer;
 
@@ -73,7 +68,7 @@ public class EnemyStateController : MonoBehaviour
 	{	
 		// Play moaning sound when the player gets to a certain distance from the monster
 		distanceToPlayer = Vector3.Distance(player.transform.position, transform.position);
-		if (distanceToPlayer <= 4.0f) {
+		if (distanceToPlayer <= 4F) {
 			if(!stateAudio.isPlaying) {
 				stateAudio.PlayOneShot (moanSound, 0.2f);
 			}
@@ -85,20 +80,6 @@ public class EnemyStateController : MonoBehaviour
         {
             expectedState.OnStateExit();
             currentState.OnStateEnter();
-
-			// Leaving chase state audio cue
-			if (currentState != chaseState) {
-				if(!stateAudio.isPlaying) {
-					stateAudio.PlayOneShot (moanSound, 0.2f);
-				}
-			}
-			// Entering chase state audio cue
-			if (currentState == chaseState) {
-				if(!stateAudio.isPlaying) {
-					stateAudio.PlayOneShot (growlSound, 1);
-				}
-			}
-
             expectedState = currentState;
             alertLocation = vec3Null;
         }
