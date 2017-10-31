@@ -3,11 +3,13 @@
 public class InvestigateState : State
 {
 	Vector3 location;
+	Flashlight light;
 
     override public void OnStateEnter()
     {
         Debug.Log("Entered investigate state");
-        location = controller.alertLocation;      
+        location = controller.alertLocation;
+		light = controller.player.gameObject.GetComponentInChildren<Flashlight>();
     }
 
     override public void OnStateUpdate()
@@ -31,13 +33,18 @@ public class InvestigateState : State
 
     public override void EvaluateTransition()
     {
-        //If he's at the location of the last noise... OR location is unreachable
-        if ((location - controller.agent.transform.position).magnitude < 1) controller.currentState = controller.roamState;
+		//if Light && LoS -> Chase
+		if (LightingUtils.inLineOfSight(controller.gameObject, controller.player.gameObject) && light.lightStatus) controller.currentState = controller.chaseState;
+
+		//Keep disabled: if Proximity && LoS -> Chase
+
+
+		//if Reached Trigger Location -> Roam
+		if ((location - controller.agent.transform.position).magnitude < 1) controller.currentState = controller.roamState;
+
+		//if Trigger Location Unreachable -> Roam        
         if (controller.history.Count > 4 && controller.history[controller.history.Count - 1] == controller.history[controller.history.Count - 4] &&
-                controller.history[controller.history.Count - 4] == controller.history[controller.history.Count - 16]) controller.currentState = controller.roamState;
-            //chase state with los && proximity or los && light
-            //if (LightingUtils.inLineOfSight (controller.gameObject, controller.player.gameObject) && Vector3.Distance (controller.transform.position, controller.player.transform.position) < 4F)
-            //	controller.currentState = controller.chaseState;
+                controller.history[controller.history.Count - 4] == controller.history[controller.history.Count - 16]) controller.currentState = controller.roamState;            
     }
 
 }

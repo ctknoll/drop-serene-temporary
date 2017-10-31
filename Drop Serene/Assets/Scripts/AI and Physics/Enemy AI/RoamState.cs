@@ -63,15 +63,14 @@ public class RoamState : State
 	}
 
     public override void EvaluateTransition()
-    {
+    {		
+		//if Noise -> Investigate
         if (!controller.alertLocation.Equals(controller.vec3Null)) controller.currentState = controller.investigateState;
-		//if (controller.foundPlayer != null) controller.currentState = controller.chaseState;
 
-        //enter chase if in line of sight and in light, EVER
+		//if Light && LoS -> Chase
         if (LightingUtils.inLineOfSight(controller.gameObject, controller.player.gameObject) && light.lightStatus) controller.currentState = controller.chaseState;
 
-		//if (LightingUtils.inLineOfSight (controller.gameObject, controller.player.gameObject) && Vector3.Distance (controller.transform.position, controller.player.transform.position) < 4F)
-		//	controller.currentState = controller.chaseState;
+		//Keep disabled: if Proximity && LoS -> Chase
     }
 
     public Vector3 localSearch(Vector3 pos, int radius, int casts)

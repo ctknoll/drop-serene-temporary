@@ -14,8 +14,6 @@ public class ChaseState : State
         controller.agent.SetDestination(controller.player.transform.position);
         originalSpeed = controller.agent.speed;
         controller.agent.speed = controller.chaseSpeed;
-        //controller.audioSource.clip = controller.enterChaseClip;
-        //controller.audioSource.Play();
     }
 
     override public void OnStateUpdate()
@@ -25,17 +23,15 @@ public class ChaseState : State
 
     override public void OnStateExit()
     {
-        controller.agent.speed = originalSpeed;
-        Debug.Log("Exit chase state");
+        controller.agent.speed = originalSpeed;        
 		controller.alertLocation = controller.player.transform.position;
-        //controller.audioSource.clip = controller.exitChaseClip;
-        //controller.audioSource.Play();
+		Debug.Log("Exit chase state");
     }
 
     public override void EvaluateTransition()
     {
-		//if !Light && (!LoS || Distance) - distance is 20-30 meters
-		if (!LightingUtils.inLineOfSight(controller.gameObject, controller.player.gameObject) && (!light.lightStatus || Vector3.Distance(controller.transform.position, controller.player.transform.position) < 25F))
+		//if !LoS && (!Light || Distance) -> Investigate
+		if (!LightingUtils.inLineOfSight(controller.gameObject, controller.player.gameObject) && (!light.lightStatus || controller.distanceToPlayer < controller.distance))
         {
             controller.currentState = controller.investigateState;
         }
