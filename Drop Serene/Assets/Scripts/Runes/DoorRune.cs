@@ -101,24 +101,26 @@ public class DoorRune : LightableObject
 
         }
 
-        if (!isActive && isLit)
+        if (!isActive)
         {
-            activationCounter += Time.deltaTime;
+            if(activationCounter == 0)
+            {
+                currentColor = deactivatedColor;
+                currentIntensity = defaultIntensity;
+            }
+            if (isLit && activationCounter < secondsToActivate)    
+                activationCounter += Time.deltaTime;
             Debug.Log(activationCounter);
-            currentColor = Color.Lerp(deactivatedColor, runeLit, secondsToActivate);
+            currentColor = Color.Lerp(deactivatedColor, runeLit, activationCounter/(2*secondsToActivate));
+            currentIntensity = Mathf.Lerp(defaultIntensity/2, lightOnIntensity / 1.5f, activationCounter/secondsToActivate);
             
             Debug.Log(currentColor);
             if (activationCounter >= secondsToActivate)
             {
+                activationCounter = secondsToActivate;
                 isActive = true;
                 OnActivate();
             }
-        }
-
-        if (!isActive)
-        {
-            currentColor = deactivatedColor;
-            currentIntensity = defaultIntensity;
         }
         base.Update();
     }
