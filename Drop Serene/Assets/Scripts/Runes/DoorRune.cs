@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -100,8 +99,7 @@ public class DoorRune : LightableObject
 
 
         }
-
-        if (!isActive)
+        else   //!active
         {
             if(activationCounter == 0)
             {
@@ -109,12 +107,10 @@ public class DoorRune : LightableObject
                 currentIntensity = defaultIntensity;
             }
             if (isLit && activationCounter < secondsToActivate)    
-                activationCounter += Time.deltaTime;
-            Debug.Log(activationCounter);
+                activationCounter += Time.deltaTime;            
             currentColor = Color.Lerp(deactivatedColor, runeLit, activationCounter/(2*secondsToActivate));
-            currentIntensity = Mathf.Lerp(defaultIntensity/2, lightOnIntensity / 1.5f, activationCounter/secondsToActivate);
+            currentIntensity = Mathf.Lerp(defaultIntensity/2, lightOnIntensity / 1.5f, activationCounter/secondsToActivate);            
             
-            Debug.Log(currentColor);
             if (activationCounter >= secondsToActivate)
             {
                 activationCounter = secondsToActivate;
@@ -132,12 +128,23 @@ public class DoorRune : LightableObject
 		{
 			if (gameObject.GetComponent<LinkedRune>().allLinked)
 			{
-				if (gameObject.GetComponent<LinkedRune>().checkAllLinked() && isActive)
-					isLinkedActive = true;
+				if (gameObject.GetComponent<LinkedRune>().checkAllLinked() && isActive) // Activate all linked runes
+                {
+                    isLinkedActive = true;
+                }
+					
 				else
 					isLinkedActive = false;
 			}
 		}
+        else   // Activate single rune        
+        {
+            if(platforms[0].GetComponentInChildren<AudioSource>())
+            {
+                platforms[0].GetComponentInChildren<AudioSource>().Play();
+            }
+        }
+        
     }
 
     public override void OnDeactivate() 
