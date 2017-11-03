@@ -16,7 +16,7 @@ public class DetectPlayerDeath : MonoBehaviour {
 
     void Update()
     {
-        if (Vector3.Magnitude(transform.position - enemy.position) < 1.2F)
+        if (Vector3.Magnitude(new Vector3(transform.position.x - enemy.position.x, (transform.position.x - enemy.position.x)/2, transform.position.z - enemy.position.z)) < 1.2F)
         {
 
             lastDiedSceneName = SceneManager.GetActiveScene().name;
