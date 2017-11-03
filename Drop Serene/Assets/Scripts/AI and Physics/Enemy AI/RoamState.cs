@@ -31,7 +31,7 @@ public class RoamState : State
 	override public void OnStateUpdate()
 	{
         Debug.DrawLine(goalPos, controller.gameObject.transform.position, Color.red);
-        if (controller.history.Count > 4)
+        if (controller.history.Count > 16)
         {
             if(controller.history[controller.history.Count - 1] == controller.history[controller.history.Count - 4] &&
                 controller.history[controller.history.Count - 4] == controller.history[controller.history.Count - 16])
@@ -65,10 +65,13 @@ public class RoamState : State
 		//if Noise -> Investigate
         if (!controller.alertLocation.Equals(controller.vec3Null)) controller.currentState = controller.investigateState;
 
-		//if Light && LoS -> Chase
+		//if Flashlight && LoS -> Chase
         if (LightingUtils.inLineOfSight(controller.gameObject, controller.player.gameObject) && light.lightStatus) controller.currentState = controller.chaseState;
 
-		//Keep disabled: if Proximity && LoS -> Chase
+        //if inLightSource && LoS -> Chase
+        if (LightingUtils.inLineOfSight(controller.gameObject, controller.player.gameObject) && controller.player.GetComponent<PlayerMovement>().isInLight) controller.currentState = controller.chaseState;
+
+        //Keep disabled: if Proximity && LoS -> Chase
     }
 
     public Vector3 localSearch(Vector3 pos, int radius, int casts)
@@ -121,7 +124,7 @@ public class RoamState : State
         double yMitigator = 4 * SigDer(yDiff - 4);
 //        if (UnityEngine.Random.Range(0, 100) > 95)
 //            Debug.Log("Value: " + value + ", Mitigator: " + yMitigator);
-        return value - yMitigator;
+        return value;
     }
 
     public double Sigmoid(double x)

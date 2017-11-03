@@ -131,10 +131,11 @@ public class PlayerMovement : MonoBehaviour
 	public bool playerInLight()
 	{
 		bool inLight = false;
-		foreach(Light light in GameObject.Find("Lights").GetComponentsInChildren<Light>())
+		foreach(Light light in GameObject.FindGameObjectWithTag("Light").GetComponentsInChildren<Light>())
 		{
-			if(LightingUtils.objectInLight(gameObject, light)) inLight = true;
-		}
+            if (LightingUtils.objectInLight(gameObject, light)) inLight = true;
+        }
+        Debug.Log("Lights: " + GameObject.Find("Lights").GetComponentsInChildren<Light>().Length + "Player in light: " + inLight);
 	    return inLight;
 	}
 }

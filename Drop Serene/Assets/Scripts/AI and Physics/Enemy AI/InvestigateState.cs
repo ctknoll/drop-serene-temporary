@@ -36,11 +36,14 @@ public class InvestigateState : State
 		//if Light && LoS -> Chase
 		if (LightingUtils.inLineOfSight(controller.gameObject, controller.player.gameObject) && light.lightStatus) controller.currentState = controller.chaseState;
 
-		//Keep disabled: if Proximity && LoS -> Chase
+        //if inLightSource && LoS -> Chase
+        if (LightingUtils.inLineOfSight(controller.gameObject, controller.player.gameObject) && controller.player.GetComponent<PlayerMovement>().isInLight) controller.currentState = controller.chaseState;
+
+        //Keep disabled: if Proximity && LoS -> Chase
 
 
-		//if Reached Trigger Location -> Roam
-		if ((location - controller.agent.transform.position).magnitude < 1) controller.currentState = controller.roamState;
+        //if Reached Trigger Location -> Roam
+        if ((location - controller.agent.transform.position).magnitude < 1) controller.currentState = controller.roamState;
 
 		//if Trigger Location Unreachable -> Roam        
         if (controller.history.Count > 4 && controller.history[controller.history.Count - 1] == controller.history[controller.history.Count - 4] &&
