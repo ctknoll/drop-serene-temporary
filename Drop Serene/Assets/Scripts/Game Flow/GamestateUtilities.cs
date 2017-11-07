@@ -8,7 +8,7 @@ public class GamestateUtilities : MonoBehaviour {
     CanvasGroup pauseMenu = null;
     private static bool isPaused;
 
-    public static readonly string[] notInGame = {"Start", "Settings", "Won", "Dead"};
+    public static readonly string[] notInGame = {"Start", "Settings", "Won", "Dead", "Credits"};
 
 	// Use this for initialization
 	void Start ()
