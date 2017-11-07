@@ -26,6 +26,7 @@ public class DoorRune : LightableObject
 	private List<float> moveTime;
 	private bool locked;
 	private bool moving;
+    private AudioSource doorSounds;
 
     // Use this for initialization
     public override void Start()
@@ -41,6 +42,7 @@ public class DoorRune : LightableObject
 		currentPos = new List<Vector3>();
 		moveTowards = new List<IEnumerator>();
 		moveReturn = new List<IEnumerator>();
+        doorSounds = GameObject.Find("Door Sounds").GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -131,6 +133,7 @@ public class DoorRune : LightableObject
 				if (gameObject.GetComponent<LinkedRune>().checkAllLinked() && isActive) // Activate all linked runes
                 {
                     isLinkedActive = true;
+                    doorSounds.Play();
                 }
 					
 				else
@@ -139,10 +142,7 @@ public class DoorRune : LightableObject
 		}
         else   // Activate single rune        
         {
-            if(platforms[0].GetComponentInChildren<AudioSource>())
-            {
-                platforms[0].GetComponentInChildren<AudioSource>().Play();
-            }
+            doorSounds.Play();
         }
         
     }
