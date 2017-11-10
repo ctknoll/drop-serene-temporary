@@ -27,6 +27,7 @@ public class DoorRune : LightableObject
 	private bool locked;
 	private bool moving;
     private AudioSource doorSounds;
+    private AudioSource runeSounds;
 
     // Use this for initialization
     public override void Start()
@@ -43,6 +44,9 @@ public class DoorRune : LightableObject
 		moveTowards = new List<IEnumerator>();
 		moveReturn = new List<IEnumerator>();
         doorSounds = GameObject.Find("Door Sounds").GetComponent<AudioSource>();
+        runeSounds = GameObject.Find("Rune Sounds").GetComponent<AudioSource>();
+        Debug.Log("Door Sound: " + doorSounds);
+        Debug.Log("Rune Sound: " + runeSounds);
     }
 
     // Update is called once per frame
@@ -126,6 +130,7 @@ public class DoorRune : LightableObject
     public override void OnActivate()
     {
 		isActive = true;
+        runeSounds.Play();
 		if (gameObject.GetComponent<LinkedRune>())
 		{
 			if (gameObject.GetComponent<LinkedRune>().allLinked)
