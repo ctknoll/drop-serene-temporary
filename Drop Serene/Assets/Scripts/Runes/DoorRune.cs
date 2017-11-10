@@ -7,12 +7,15 @@ using System.Collections.Generic;
 
 public class DoorRune : LightableObject
 {
+    [Header("Light Options")]
 	public float defaultIntensity = .1F;
     public float lightOnIntensity = .3F;
 	public Color deactivatedColor;
     public Color runeLit;
     public Color runeDark;
+    public GameObject runeRing;
 
+    [Header("Platform options")]
 	public GameObject[] platforms;
 	public float moveSpeed;
 	public Vector3 directionToMove;
@@ -45,8 +48,9 @@ public class DoorRune : LightableObject
 		moveReturn = new List<IEnumerator>();
         doorSounds = GameObject.Find("Door Sounds").GetComponent<AudioSource>();
         runeSounds = GameObject.Find("Rune Sounds").GetComponent<AudioSource>();
-        Debug.Log("Door Sound: " + doorSounds);
-        Debug.Log("Rune Sound: " + runeSounds);
+
+        runeRing = Resources.Load("Rune Ring") as GameObject;
+        Debug.Log("Rune Ring: " + runeRing);
     }
 
     // Update is called once per frame
@@ -131,14 +135,15 @@ public class DoorRune : LightableObject
     {
 		isActive = true;
         runeSounds.Play();
-		if (gameObject.GetComponent<LinkedRune>())
+        LinkedRune linkedRune = gameObject.GetComponent<LinkedRune>();
+
+        if (linkedRune)
 		{
-			if (gameObject.GetComponent<LinkedRune>().allLinked)
+			if (linkedRune.allLinked)
 			{
-				if (gameObject.GetComponent<LinkedRune>().checkAllLinked() && isActive) // Activate all linked runes
+				if (linkedRune.checkAllLinked() && isActive) // Activate all linked runes
                 {
-                    isLinkedActive = true;
-                    doorSounds.Play();
+                    isLinkedActive = true;                    
                 }
 					
 				else
@@ -148,6 +153,24 @@ public class DoorRune : LightableObject
         else   // Activate single rune        
         {
             doorSounds.Play();
+            Instantiate(runeRing, transform);
+            GetComponentsInChildren<SpriteRenderer>()[1].material.SetColor("_EmissionColor", runeLit);
+        }
+
+        if(isLinkedActive)  //Activate multiple runes
+        {
+            doorSounds.Play();
+
+            //Add ring to this rune
+            Instantiate(runeRing, transform);
+            GetComponentsInChildren<SpriteRenderer>()[1].material.SetColor("_EmissionColor", runeLit);
+
+            //Add ring to other linked runes
+            foreach (GameObject rune in linkedRune.linkedRunes)
+            {
+                Instantiate(runeRing, rune.transform);
+                rune.GetComponentsInChildren<SpriteRenderer>()[1].material.SetColor("_EmissionColor", runeLit);
+            }
         }
         
     }

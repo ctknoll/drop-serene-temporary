@@ -32,17 +32,23 @@ public class GlobalLight : MonoBehaviour {
 
     void ToggleLights(bool enabled)
     {
+        if (globalLights.Length == 0)
+            return;
         foreach(Light light in globalLights)
         {
-            light.enabled = enabled;
+            if(light != null)
+                light.enabled = enabled;
         }
     }
 
     void ToggleRenderer(bool enabled)
     {
+        if (makeInvisible.Length == 0)
+            return;
         foreach (GameObject obj in makeInvisible)
         {
-            obj.GetComponent<MeshRenderer>().enabled = enabled;
+            if(obj != null)
+                obj.GetComponent<MeshRenderer>().enabled = enabled;
         }
     }
 }

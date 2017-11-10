@@ -2,7 +2,8 @@
 
 public abstract class LightableObject : MonoBehaviour
 {
-    Renderer rend;    
+    Renderer rend; 
+    [Header("Rune Activated?")]
     public bool isLit = false;
     public bool isActive = false;
 	public bool isLinkedActive = false;
