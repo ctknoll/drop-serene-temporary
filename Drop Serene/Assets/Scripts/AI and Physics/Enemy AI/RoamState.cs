@@ -31,6 +31,7 @@ public class RoamState : State
 	override public void OnStateUpdate()
 	{
         Debug.DrawLine(goalPos, controller.gameObject.transform.position, Color.red);
+        // If we're stuck (haven't moved), choose new goal
         if (controller.history.Count > 16)
         {
             if(controller.history[controller.history.Count - 1] == controller.history[controller.history.Count - 4] &&
@@ -41,6 +42,7 @@ public class RoamState : State
                 controller.agent.destination = goalPos;
             }
         }
+        // If we've reached our goal, choose new goal
         if (Vector3.Magnitude(controller.agent.transform.position - goalPos) < 1.5F)
         {
             Vector3 tmpGoal = goalPos;
@@ -52,7 +54,7 @@ public class RoamState : State
             lastGoal = tmpGoal;
             Debug.Log("New Goal Position: " + goalPos);
             controller.agent.destination = goalPos;
-        }	
+        }
     }
 
 	override public void OnStateExit()
